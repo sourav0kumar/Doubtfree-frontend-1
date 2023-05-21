@@ -97,7 +97,7 @@ const Dashboard = () => {
   } = theme.useToken();
   return (
     <>
-      <Header style={{ display: "flex", alignItems: "center" }}>
+      {/* <Header style={{ display: "flex", alignItems: "center" }}>
         <h4 style={{ color: "#fff", marginRight: "50px" }}>Logo</h4>
         <Space
           wrap
@@ -115,7 +115,7 @@ const Dashboard = () => {
           <Button type="link">Home</Button>
           <Button type="primary">Login</Button>
         </Space>
-      </Header>
+      </Header> */}
       <Layout
         style={{
           minHeight: "100vh",

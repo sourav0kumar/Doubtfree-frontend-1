@@ -1,10 +1,8 @@
-import { BrowserRouter,Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 import About from "./pages/About";
-import Navbar from "./components/navbar";
-import Home from "./pages/home";
 import LoginDemo from "./pages/login";
 import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
@@ -12,8 +10,9 @@ import Dashboard from "./pages/dashboard";
 function App() {
   return (
     <>
-      <div><Navbar/></div>
-      <Home/>
+      <div>
+        <Navbar />
+      </div>
       {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -28,8 +27,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
