@@ -4,13 +4,15 @@ import {
   UserOutlined,
   DesktopOutlined,
   TeamOutlined,
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
+  ArrowLeftOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Button, Layout, Menu, Space, theme } from "antd";
 import { useState } from "react";
+import Profile from "./profile";
+import Courses from "./courses";
+import { Link, Route, Routes } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
+
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -19,66 +21,11 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
-const items1 = [
-  {
-    label: "Navigation One",
-    key: "mail",
-    icon: <MailOutlined />,
-  },
-  {
-    label: "Navigation Two",
-    key: "app",
-    icon: <AppstoreOutlined />,
-    disabled: true,
-  },
-  {
-    label: "Navigation Three - Submenu",
-    key: "SubMenu",
-    icon: <SettingOutlined />,
-    children: [
-      {
-        type: "group",
-        label: "Item 1",
-        children: [
-          {
-            label: "Option 1",
-            key: "setting:1",
-          },
-          {
-            label: "Option 2",
-            key: "setting:2",
-          },
-        ],
-      },
-      {
-        type: "group",
-        label: "Item 2",
-        children: [
-          {
-            label: "Option 3",
-            key: "setting:3",
-          },
-          {
-            label: "Option 4",
-            key: "setting:4",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
-      </a>
-    ),
-    key: "alipay",
-  },
-];
+
 const items = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
+  getItem("Profile", "1", <UserOutlined />),
+  getItem("Courses", "2", <DesktopOutlined />),
+  getItem("Playground", "sub1", <UserOutlined />, [
     getItem("Tom", "3"),
     getItem("Bill", "4"),
     getItem("Alex", "5"),
@@ -92,30 +39,12 @@ const items = [
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [active, setActive] = useState("1");
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
     <>
-      {/* <Header style={{ display: "flex", alignItems: "center" }}>
-        <h4 style={{ color: "#fff", marginRight: "50px" }}>Logo</h4>
-        <Space
-          wrap
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <Button type="link">Courses</Button>
-          <Button type="link">Register</Button>
-          <Button type="link">About Us</Button>
-
-          <Button type="link">Home</Button>
-          <Button type="primary">Login</Button>
-        </Space>
-      </Header> */}
       <Layout
         style={{
           minHeight: "100vh",
@@ -128,23 +57,45 @@ const Dashboard = () => {
           onCollapse={(value) => setCollapsed(value)}
         >
           <div className="demo-logo-vertical" />
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={["1"]}
-            mode="inline"
-            items={items}
-          />
+          <div className="side-bar-links">
+            <Link
+              to="/dashboard/profile"
+              className={active === "1" ? "active" : ""}
+              onClick={() => setActive("1")}
+            >
+              <UserOutlined style={{ marginRight: "5px" }} />
+              {!collapsed && "Profile"}
+            </Link>
+            <Link
+              to="/dashboard/courses"
+              className={active === "2" ? "active" : ""}
+              onClick={() => setActive("2")}
+            >
+              {" "}
+              <DesktopOutlined style={{ marginRight: "5px" }} />
+              {!collapsed && "Courses"}
+            </Link>
+            <Link
+              to="/dashboard/playground"
+              className={active === "3" ? "active" : ""}
+              onClick={() => setActive("3")}
+            >
+              {" "}
+              <DesktopOutlined style={{ marginRight: "5px" }} />
+              {!collapsed && "playground"}
+            </Link>
+            <Link to="/">
+              {" "}
+              <ArrowLeftOutlined style={{ marginRight: "5px" }} />
+              {!collapsed && "Back to home"}
+            </Link>
+          </div>
         </Sider>
         <Layout>
-          <Header
-            style={{
-              padding: 0,
-              background: colorBgContainer,
-            }}
-          />
           <Content
             style={{
               margin: "0 16px",
+              overflow: "auto",
             }}
           >
             <Breadcrumb
@@ -152,8 +103,12 @@ const Dashboard = () => {
                 margin: "16px 0",
               }}
             >
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+              <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                {active === "1" && "Profile"}
+                {active === "2" && "Courses"}
+                {active === "3" && "About"}
+              </Breadcrumb.Item>
             </Breadcrumb>
             <div
               style={{
@@ -162,7 +117,10 @@ const Dashboard = () => {
                 background: colorBgContainer,
               }}
             >
-              Bill is a cat.
+              <Routes>
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/courses" element={<Courses />} />
+              </Routes>
             </div>
           </Content>
           <Footer

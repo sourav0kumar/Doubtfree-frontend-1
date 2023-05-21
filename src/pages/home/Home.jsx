@@ -1,5 +1,6 @@
 import React from "react";
 import "./home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -22,20 +23,20 @@ const Home = () => {
           Discover the best coding course for your kids.
         </div>
         <div className="text-base">Learn Coding from basics.</div>
-        <div className="btn-div">
-          <button
-            type="button"
+        <div className="btn-div my-5">
+          <Link
+            to="/dashboard/courses"
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-lg"
           >
             Explore
-          </button>
+          </Link>
 
-          <button
-            type="button"
-            className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg"
+          <Link
+            to="/"
+            className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
           >
             Learn More
-          </button>
+          </Link>
         </div>
       </div>
     </>
