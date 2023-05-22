@@ -12,6 +12,8 @@ import Contact from "./pages/Contact";
 import DoubtSupport from "./pages/DoubtSupport";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import ForgetPassword from "./pages/forget password";
+import ChangePassword from "./pages/change password";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.verify).result;
@@ -24,27 +26,29 @@ function App() {
     <>
       <div>
         <Navbar />
-      </div>
+      </div>{" "}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />{" "}
         {isLoggedIn && (
           <>
-            <Route path="/dashboard/*" element={<Dashboard />} />
+            <Route path="/dashboard/*" element={<Dashboard />} />{" "}
           </>
-        )}
+        )}{" "}
         {!isLoggedIn && (
           <>
-            <Route path="/login" element={<LoginDemo />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<LoginDemo />} />{" "}
+            <Route path="/forget-password" element={<ForgetPassword />} />{" "}
+            <Route path="/change-password" element={<ChangePassword />} />{" "}
+            <Route path="/register" element={<Register />} />{" "}
           </>
-        )}
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/doubtSupport" element={<DoubtSupport />} />
-        <Route path="/*" element={<Navigate to="/" />} />
-      </Routes>
-      {/* <Footer /> */}
+        )}{" "}
+        <Route path="/courses" element={<Courses />} />{" "}
+        <Route path="/about" element={<About />} />{" "}
+        <Route path="/contact" element={<Contact />} />{" "}
+        <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
+        <Route path="/*" element={<Navigate to="/" />} />{" "}
+      </Routes>{" "}
+      {/* <Footer /> */}{" "}
     </>
   );
 }

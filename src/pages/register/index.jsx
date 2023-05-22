@@ -1,21 +1,20 @@
 import React from "react";
 import {
-  AutoComplete,
+  Avatar,
   Button,
-  Cascader,
   Checkbox,
-  Col,
+  DatePicker,
   Form,
   Input,
-  InputNumber,
-  Row,
   Select,
+  Upload,
   message,
 } from "antd";
 import { useState } from "react";
 import "./style.css";
 import { RegisterUserService } from "../../services/auth/register";
 import { useDispatch } from "react-redux";
+import { UploadOutlined, UserOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -53,6 +52,9 @@ const Register = () => {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
+  const [image, setImage] = useState(null);
+  const [isUploaded, setUploaded] = useState(false);
+
   const onFinish = async (values) => {
     const key = "updatable";
     messageApi.open({
@@ -61,11 +63,11 @@ const Register = () => {
       content: "Loading...",
     });
     console.log("Received values of form: ", values);
-    const res = await RegisterUserService(values, dispatch);
+    // const res = await RegisterUserService(values, dispatch);
     messageApi.open({
       key,
       type: "success",
-      content: res,
+      // content: res,
       duration: 3,
     });
   };
@@ -76,37 +78,11 @@ const Register = () => {
           width: 70,
         }}
       >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
+        <Option value="91">+91</Option>
+        <Option value="92">+92</Option>
       </Select>
     </Form.Item>
   );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
-    }
-  };
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
   return (
     <div className="container-register">
       {contextHolder}
@@ -116,16 +92,37 @@ const Register = () => {
         name="register"
         className="container-register-form"
         onFinish={onFinish}
-        initialValues={{
-          residence: "",
-          prefix: "86",
-        }}
         scrollToFirstError
         noValidate
       >
         <span className="form-head">
           <h4>Register</h4>
         </span>
+        <span className="form-head">
+          {image && (
+            <Avatar size={100}>
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Image"
+                style={{ transform: "scale(2) translateY(10px)" }}
+              />{" "}
+            </Avatar>
+          )}
+        </span>
+        <Form.Item
+          name="name"
+          label="Name"
+          tooltip="What is your name?"
+          rules={[
+            {
+              required: true,
+              message: "Please input your name!",
+              whitespace: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           name="email"
           label="E-mail"
@@ -181,25 +178,39 @@ const Register = () => {
         >
           <Input.Password />
         </Form.Item>
-
         <Form.Item
-          name="nickname"
-          label="Nickname"
-          tooltip="What do you want others to call you?"
+          name="profile"
+          label="Profile Image"
           rules={[
             {
               required: true,
-              message: "Please input your nickname!",
-              whitespace: true,
+              message: "Please Upload Profile Image",
             },
           ]}
         >
-          <Input />
+          {/* <Upload name="file" onChange={() => setUploaded(true)}>
+            {!isUploaded && (
+              <Button icon={<UploadOutlined />}>Click to Upload</Button>
+            )}
+          </Upload> */}
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+        </Form.Item>
+        <Form.Item
+          name="dob"
+          label="Date of Birth"
+          rules={[
+            {
+              required: true,
+              message: "Please write Date of Birth",
+            },
+          ]}
+        >
+          <DatePicker />
         </Form.Item>
 
         <Form.Item
           name="residence"
-          label="Habitual Residence"
+          label="Residence"
           rules={[
             {
               required: false,
@@ -228,44 +239,6 @@ const Register = () => {
             }}
           />
         </Form.Item>
-
-        <Form.Item
-          name="donation"
-          label="Donation"
-          rules={[
-            {
-              required: true,
-              message: "Please input donation amount!",
-            },
-          ]}
-        >
-          <InputNumber
-            addonAfter={suffixSelector}
-            style={{
-              width: "100%",
-            }}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="website"
-          label="Website"
-          rules={[
-            {
-              required: true,
-              message: "Please input website!",
-            },
-          ]}
-        >
-          <AutoComplete
-            options={websiteOptions}
-            onChange={onWebsiteChange}
-            placeholder="website"
-          >
-            <Input />
-          </AutoComplete>
-        </Form.Item>
-
         <Form.Item
           name="intro"
           label="Intro"
@@ -278,7 +251,6 @@ const Register = () => {
         >
           <Input.TextArea showCount maxLength={100} />
         </Form.Item>
-
         <Form.Item
           name="gender"
           label="Gender"
@@ -295,32 +267,6 @@ const Register = () => {
             <Option value="other">Other</Option>
           </Select>
         </Form.Item>
-
-        <Form.Item
-          label="Captcha"
-          extra="We must make sure that your are a human."
-        >
-          <Row gutter={8}>
-            <Col span={12}>
-              <Form.Item
-                name="captcha"
-                noStyle
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the captcha you got!",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Button>Get captcha</Button>
-            </Col>
-          </Row>
-        </Form.Item>
-
         <Form.Item
           name="agreement"
           valuePropName="checked"
@@ -335,7 +281,10 @@ const Register = () => {
           {...tailFormItemLayout}
         >
           <Checkbox>
-            I have read the <a href="">agreement</a>
+            I have read the{" "}
+            <a href="" target="_blank">
+              agreement
+            </a>
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
@@ -343,6 +292,7 @@ const Register = () => {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            loading={false}
           >
             Register
           </Button>

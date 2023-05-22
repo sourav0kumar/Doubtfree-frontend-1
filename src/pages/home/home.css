@@ -57,3 +57,16 @@
   justify-content: center;
   align-items: center;
 }
+
+/* Code ide */
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap");
+.code-ide {
+  background-color: #000 !important;
+  color: rgba(0, 255, 0, 0.986);
+  font-family: "Source Code Pro", monospace !important;
+}
+
+.code-ide::placeholder {
+  color: #ffffff80;
+}

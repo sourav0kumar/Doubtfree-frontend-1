@@ -22,6 +22,9 @@ export async function LoginService(email, password, dispatch) {
             } else if (res.message == "User don't Exist.") {
                 console.log(res);
                 msg = "User doesn't Exist";
+            } else if (res.message == "Invalid credentials") {
+                console.log(res);
+                msg = "Invalid Credentials";
             } else {
                 dispatch(getuser(res));
                 dispatch(VERIFY_AUTH({ isLoggedIn: true }))

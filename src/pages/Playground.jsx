@@ -1,17 +1,58 @@
 import React, { useState } from "react";
-
+import SelectMenu from "../components/Select";
+import TextArea from "antd/es/input/TextArea";
+const options = [
+  {
+    value: "C++",
+    label: "C++",
+  },
+  {
+    value: "Java",
+    label: "Java",
+  },
+  {
+    value: "Python",
+    label: "Python",
+  },
+  {
+    value: "Kotlin",
+    label: "Kotlin",
+  },
+];
+const ide_theme = [
+  {
+    value: "Dark",
+    label: "Theme",
+  },
+  {
+    value: "Dark",
+    label: "Dark",
+  },
+  {
+    value: "Light",
+    label: "Light",
+  },
+];
+const LightTheme = {
+  backgroundColor: "#fff !important",
+  color: "#000",
+  FontFace: `"Source Code Pro", monospace !important`,
+};
 const CodeEditor = () => {
   const [code, setCode] = useState("");
-  const [language, setLanguage] = useState("JavaScript");
+  const [theme, setTheme] = useState("Dark");
+  const [language, setLanguage] = useState(options[0].label);
 
   const handleCodeChange = (e) => {
     setCode(e.target.value);
   };
 
   const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
+    setLanguage(e.value);
   };
-
+  const handleThemeChange = (e) => {
+    setTheme(e.value);
+  };
   const handleRunCode = () => {
     // Run code logic
   };
@@ -32,32 +73,34 @@ const CodeEditor = () => {
         <label htmlFor="language" className="block mb-2">
           Choose Language:
         </label>
-        <select
-          id="language"
-          className="block w-full bg-white border border-gray-300 rounded px-4 py-2 mb-2"
-          value={language}
-          onChange={handleLanguageChange}
-        >
-          <option value="JavaScript">C++</option>
-          <option value="JavaScript">Java</option>
-          <option value="JavaScript">C</option>
-          <option value="JavaScript">Python</option>
-          <option value="Python">Javascript</option>
-          <option value="Java">Kotlin</option>
-          {/* Add more language options */}
-        </select>
+        <SelectMenu
+          options={options}
+          handleChange={handleLanguageChange}
+          size={"75%"}
+        />
+        <span style={{ width: "10px", marginLeft: "20px" }}></span>
+        <SelectMenu
+          options={ide_theme}
+          handleChange={handleThemeChange}
+          size={"23%"}
+        />
       </div>
 
       <div className="mb-4">
         <label htmlFor="code" className="block mb-2">
-          Code:
+          Code({language}):
         </label>
-        <textarea
-          id="code"
-          className="block w-full bg-white border border-gray-300 rounded px-4 py-2 h-64"
+        <TextArea
           value={code}
           onChange={handleCodeChange}
-        ></textarea>
+          placeholder={`Write code in ${language}`}
+          className={theme === "Dark" ? "code-ide" : ""}
+          autoSize={{
+            minRows: 15,
+            maxRows: 15,
+          }}
+          style={theme === "Light" ? LightTheme : {}}
+        />
       </div>
 
       <div className="flex justify-end mb-4">
