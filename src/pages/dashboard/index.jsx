@@ -1,11 +1,11 @@
 import React from "react";
 import {
   FileOutlined,
-  PieChartOutlined,
   UserOutlined,
   DesktopOutlined,
   TeamOutlined,
   ArrowLeftOutlined,
+  FolderAddOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Button, Layout, Menu, Space, theme } from "antd";
 import { useState } from "react";
@@ -14,10 +14,8 @@ import Playground from "../Playground";
 
 import Courses from "./courses";
 import { Link, Route, Routes } from "react-router-dom";
+import AddCourse from "./addcourse";
 const { Header, Content, Footer, Sider } = Layout;
-
-
-
 
 function getItem(label, key, icon, children) {
   return {
@@ -90,6 +88,15 @@ const Dashboard = () => {
               <DesktopOutlined style={{ marginRight: "5px" }} />
               {!collapsed && "playground"}
             </Link>
+            <Link
+              to="/dashboard/add-course"
+              className={active === "4" ? "active" : ""}
+              onClick={() => setActive("4")}
+            >
+              {" "}
+              <FolderAddOutlined style={{ marginRight: "5px" }} />
+              {!collapsed && "Add Course"}
+            </Link>
             <Link to="/">
               {" "}
               <ArrowLeftOutlined style={{ marginRight: "5px" }} />
@@ -114,6 +121,7 @@ const Dashboard = () => {
                 {active === "1" && "Profile"}
                 {active === "2" && "Courses"}
                 {active === "3" && "About"}
+                {active === "4" && "Add Course"}
               </Breadcrumb.Item>
             </Breadcrumb>
             <div
@@ -125,6 +133,7 @@ const Dashboard = () => {
             >
               <Routes>
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/add-course" element={<AddCourse />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/playground" element={<Playground />} />
               </Routes>
