@@ -10,45 +10,15 @@ import {
   InputNumber,
   Row,
   Select,
+  message,
 } from "antd";
 import { useState } from "react";
 import "./style.css";
+import { RegisterUserService } from "../../services/auth/register";
+import { useDispatch } from "react-redux";
 
 const { Option } = Select;
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -81,8 +51,23 @@ const tailFormItemLayout = {
 };
 const Register = () => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
+  const [messageApi, contextHolder] = message.useMessage();
+  const dispatch = useDispatch();
+  const onFinish = async (values) => {
+    const key = "updatable";
+    messageApi.open({
+      key,
+      type: "loading",
+      content: "Loading...",
+    });
     console.log("Received values of form: ", values);
+    const res = await RegisterUserService(values, dispatch);
+    messageApi.open({
+      key,
+      type: "success",
+      content: res,
+      duration: 3,
+    });
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -124,6 +109,7 @@ const Register = () => {
   }));
   return (
     <div className="container-register">
+      {contextHolder}
       <Form
         {...formItemLayout}
         form={form}
@@ -131,10 +117,11 @@ const Register = () => {
         className="container-register-form"
         onFinish={onFinish}
         initialValues={{
-          residence: ["zhejiang", "hangzhou", "xihu"],
+          residence: "",
           prefix: "86",
         }}
         scrollToFirstError
+        noValidate
       >
         <span className="form-head">
           <h4>Register</h4>
@@ -215,13 +202,13 @@ const Register = () => {
           label="Habitual Residence"
           rules={[
             {
-              type: "array",
-              required: true,
-              message: "Please select your habitual residence!",
+              required: false,
+              message: "Please Write home address",
             },
           ]}
         >
-          <Cascader options={residences} />
+          {" "}
+          <Input.TextArea showCount maxLength={100} />
         </Form.Item>
 
         <Form.Item

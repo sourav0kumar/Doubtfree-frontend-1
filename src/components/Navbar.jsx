@@ -3,11 +3,19 @@ import Home from "../pages/home/Home";
 import { Link } from "react-router-dom";
 import "./css/navbar.css";
 import { Button } from "antd";
-import { LoginOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  CodeFilled,
+  LoginOutlined,
+  PoweroffOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { LogoutUser } from "../services/auth/logout";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.verify).result;
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -73,14 +81,16 @@ const Navbar = () => {
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
-                  <Link
-                    to={"/dashboard/profile"}
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                    aria-current="page"
-                  >
-                    {" "}
-                    Dashboard
-                  </Link>
+                  {isLoggedIn && (
+                    <Link
+                      to={"/dashboard/profile"}
+                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                      aria-current="page"
+                    >
+                      {" "}
+                      Dashboard
+                    </Link>
+                  )}
                   <Link
                     to={"/courses"}
                     class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -129,28 +139,60 @@ const Navbar = () => {
                   alignItems: "center",
                 }}
               >
-                <Link
-                  to="/register"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
-                  aria-current="page"
-                >
-                  Register
-                </Link>
-                <Link
-                  to="/login"
-                  class="text-gray-300 bg-blue-600 hover:bg-blue-500 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
-                  aria-current="page"
-                  style={{
-                    width: "150px",
-                    padding: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <UserOutlined />
-                  Login
-                </Link>
+                {isLoggedIn && (
+                  <>
+                    <Link
+                      to="/"
+                      class="text-gray-300 bg-blue-600 hover:bg-blue-500 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
+                      aria-current="page"
+                      style={{
+                        width: "150px",
+                        padding: "10px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <CodeFilled className="mx-1" />
+                      Playground
+                    </Link>
+                    <Link
+                      to="/login"
+                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
+                      aria-current="page"
+                      onClick={() => LogoutUser(dispatch)}
+                    >
+                      <PoweroffOutlined className="mx-2" />
+                      Logout
+                    </Link>
+                  </>
+                )}
+                {!isLoggedIn && (
+                  <>
+                    <Link
+                      to="/register"
+                      class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
+                      aria-current="page"
+                    >
+                      Register
+                    </Link>
+                    <Link
+                      to="/login"
+                      class="text-gray-300 bg-blue-600 hover:bg-blue-500 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
+                      aria-current="page"
+                      style={{
+                        width: "150px",
+                        padding: "10px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <UserOutlined />
+                      Login
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
