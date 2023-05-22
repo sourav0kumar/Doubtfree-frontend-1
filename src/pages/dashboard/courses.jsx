@@ -1,3 +1,4 @@
+import React from "react";
 import { Col, Row, Typography } from "antd";
 import "./css/profile.css";
 import CoursesTable from "../../components/Table";

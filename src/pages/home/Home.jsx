@@ -1,7 +1,7 @@
 import React from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
-
+import Footer from "../../components/Footer";
 const Home = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const Home = () => {
           </div>
         </div>
         <div className="home-right">
-          <img src="/dizzyeducation-1@2x.png" className="max-w-[80%] h-auto" />
+          <img src="/dizzyeducation-1@2x.png" className="max-w-[90%] h-auto" />
         </div>
       </div>
       <div className="text-gray py-4 px-6 text-left container-home1">
@@ -32,13 +32,18 @@ const Home = () => {
           </Link>
 
           <Link
-            to="/"
+            to="https://doubtfree.in/"
             className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
           >
             Learn More
           </Link>
         </div>
       </div>
+
+      <div className="mt-1">
+        <Footer/>
+      </div>
+
     </>
   );
 };

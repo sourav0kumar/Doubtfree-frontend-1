@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FileOutlined,
   PieChartOutlined,
@@ -9,9 +10,14 @@ import {
 import { Breadcrumb, Button, Layout, Menu, Space, theme } from "antd";
 import { useState } from "react";
 import Profile from "./profile";
+import Playground from "../Playground";
+
 import Courses from "./courses";
 import { Link, Route, Routes } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
+
+
+
 
 function getItem(label, key, icon, children) {
   return {
@@ -120,6 +126,7 @@ const Dashboard = () => {
               <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/courses" element={<Courses />} />
+                <Route path="/playground" element={<Playground />} />
               </Routes>
             </div>
           </Content>
