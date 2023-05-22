@@ -99,8 +99,21 @@ const Navbar = () => {
                     {" "}
                     Courses
                   </Link>
+
                   <Link
-                    to={"/"}
+                    to={"/doubtSupport"}
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    aria-current="page"
+                  >
+                    {" "}
+                    DoubtSupport
+                  </Link>
+
+
+
+
+                  <Link
+                    to={"/About"}
                     class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >
@@ -108,7 +121,7 @@ const Navbar = () => {
                     About
                   </Link>
                   <Link
-                    to={"/"}
+                    to={"/Contact"}
                     class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >

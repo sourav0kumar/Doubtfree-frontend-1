@@ -1,12 +1,15 @@
+import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/home/Home";
-import About from "./pages/About";
 import LoginDemo from "./pages/login";
 import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
+import About from "./pages/About";
 import Courses from "./pages/dashboard/courses";
+import Contact from "./pages/Contact";
+import DoubtSupport from "./pages/DoubtSupport";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -22,7 +25,6 @@ function App() {
       <div>
         <Navbar />
       </div>
-      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         {isLoggedIn && (
@@ -37,6 +39,9 @@ function App() {
           </>
         )}
         <Route path="/courses" element={<Courses />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/doubtSupport" element={<DoubtSupport />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
       {/* <Footer /> */}
