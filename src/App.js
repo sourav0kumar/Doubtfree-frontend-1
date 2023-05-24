@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import ForgetPassword from "./pages/forget password";
 import ChangePassword from "./pages/change password";
+import Upload_test from "./upload_test";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.verify).result;
@@ -45,6 +46,7 @@ function App() {
         <Route path="/courses" element={<Courses />} />{" "}
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
+        <Route path="/test" element={<Upload_test />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
       </Routes>{" "}
