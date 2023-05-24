@@ -30,11 +30,15 @@ function App() {
       </div>{" "}
       <Routes>
         <Route path="/" element={<Home />} />{" "}
+        
         {isLoggedIn && (
           <>
             <Route path="/dashboard/*" element={<Dashboard />} />{" "}
           </>
         )}{" "}
+
+            {/* <Route path="/dashboard/*" element={<Dashboard />} />{" "} */}
+
         {!isLoggedIn && (
           <>
             <Route path="/login" element={<LoginDemo />} />{" "}
@@ -43,6 +47,8 @@ function App() {
             <Route path="/register" element={<Register />} />{" "}
           </>
         )}{" "}
+
+
         <Route path="/courses" element={<Courses />} />{" "}
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
