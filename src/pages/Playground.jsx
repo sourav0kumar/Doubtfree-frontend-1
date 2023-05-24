@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import SelectMenu from "../components/Select";
 import TextArea from "antd/es/input/TextArea";
+
+import CodeOutput from "../components/CodeOutput";
+
 const options = [
   {
     value: "C++",
@@ -34,14 +37,17 @@ const ide_theme = [
   },
 ];
 const LightTheme = {
-  backgroundColor: "#fff !important",
+  backgroundColor: "#FFFFFF",
   color: "#000",
-  FontFace: `"Source Code Pro", monospace !important`,
+  fontFamily: `"Source Code Pro", monospace`,
 };
+
+
 const CodeEditor = () => {
   const [code, setCode] = useState("");
   const [theme, setTheme] = useState("Dark");
   const [language, setLanguage] = useState(options[0].label);
+  const [showOutput, setShowOutput] = useState(false);
 
   const handleCodeChange = (e) => {
     setCode(e.target.value);
@@ -50,11 +56,13 @@ const CodeEditor = () => {
   const handleLanguageChange = (e) => {
     setLanguage(e.value);
   };
-  const handleThemeChange = (e) => {
-    setTheme(e.value);
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "Dark" ? "Light" : "Dark"));
   };
+  
   const handleRunCode = () => {
     // Run code logic
+    setShowOutput(true);
   };
 
   const handleSaveCode = () => {
@@ -63,6 +71,7 @@ const CodeEditor = () => {
 
   const handleSubmitCode = () => {
     // Submit code logic
+    setShowOutput(true);
   };
 
   return (
@@ -79,11 +88,12 @@ const CodeEditor = () => {
           size={"75%"}
         />
         <span style={{ width: "10px", marginLeft: "20px" }}></span>
-        <SelectMenu
-          options={ide_theme}
-          handleChange={handleThemeChange}
-          size={"23%"}
-        />
+        <button
+          className="btn btn-light"
+          onClick={handleThemeChange}
+        >
+          {theme === "Dark" ? <i class="bi bi-sun"></i> : <i class="bi bi-sun-fill"></i>}
+        </button>
       </div>
 
       <div className="mb-4">
@@ -126,6 +136,11 @@ const CodeEditor = () => {
 
       {/* Code Output */}
       {/* Add the component or element to display the code output */}
+      <div>
+        <CodeOutput output={showOutput}/>
+      </div>
+
+
     </div>
   );
 };
