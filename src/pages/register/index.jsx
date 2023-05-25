@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   Select,
+  Switch,
   Upload,
   message,
 } from "antd";
@@ -63,13 +64,37 @@ const Register = () => {
       content: "Loading...",
     });
     console.log("Received values of form: ", values);
-    // const res = await RegisterUserService(values, dispatch);
-    messageApi.open({
-      key,
-      type: "success",
-      // content: res,
-      duration: 3,
-    });
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const buffer = event.target.result; // The file buffer
+      const mimeType = image.type;
+
+      // Create a FormData object to send the file
+      const formData = new FormData();
+      formData.append(
+        "file",
+        new Blob([buffer], { type: mimeType }),
+        image.name
+      );
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("password", values.password);
+      formData.append("residence", "nxalbv");
+      formData.append("mobile_number", values.mobile_number);
+      formData.append("introduction", values.introduction);
+      formData.append("gender", values.gender);
+      formData.append("date_of_birth", values.date_of_birth);
+      formData.append("isTeacher", values.isTeacher);
+      console.log("Received values of form: ", formData);
+      const res = await RegisterUserService(formData, dispatch);
+      messageApi.open({
+        key,
+        type: "success",
+        content: res,
+        duration: 3,
+      });
+    };
+    reader.readAsArrayBuffer(image);
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -92,6 +117,9 @@ const Register = () => {
         name="register"
         className="container-register-form"
         onFinish={onFinish}
+        initialValues={{
+          residence: "",
+        }}
         scrollToFirstError
         noValidate
       >
@@ -109,6 +137,23 @@ const Register = () => {
             </Avatar>
           )}
         </span>
+        <Form.Item
+          name="isTeacher"
+          label="Teacher or Student"
+          tooltip="Who are you?"
+          rules={[
+            {
+              required: false,
+              message: "Please input this field!",
+            },
+          ]}
+        >
+          <Switch
+            checkedChildren="Teacher"
+            className="bg-gray-600"
+            unCheckedChildren="Student"
+          />
+        </Form.Item>
         <Form.Item
           name="name"
           label="Name"
@@ -179,7 +224,7 @@ const Register = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item
-          name="profile"
+          name="profileImage"
           label="Profile Image"
           rules={[
             {
@@ -196,7 +241,7 @@ const Register = () => {
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </Form.Item>
         <Form.Item
-          name="dob"
+          name="date_of_birth"
           label="Date of Birth"
           rules={[
             {
@@ -205,7 +250,7 @@ const Register = () => {
             },
           ]}
         >
-          <DatePicker />
+          <input type="date" />
         </Form.Item>
 
         <Form.Item
@@ -223,12 +268,12 @@ const Register = () => {
         </Form.Item>
 
         <Form.Item
-          name="phone"
-          label="Phone Number"
+          name="mobile_number"
+          label="Mobile Number"
           rules={[
             {
               required: true,
-              message: "Please input your phone number!",
+              message: "Please input your mobile number!",
             },
           ]}
         >
@@ -240,12 +285,12 @@ const Register = () => {
           />
         </Form.Item>
         <Form.Item
-          name="intro"
-          label="Intro"
+          name="introduction"
+          label="Introduction"
           rules={[
             {
               required: true,
-              message: "Please input Intro",
+              message: "Please input Introduction",
             },
           ]}
         >
@@ -257,7 +302,7 @@ const Register = () => {
           rules={[
             {
               required: true,
-              message: "Please select gender!",
+              message: "Please select Gender!",
             },
           ]}
         >
