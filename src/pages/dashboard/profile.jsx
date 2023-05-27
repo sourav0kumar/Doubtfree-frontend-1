@@ -1,13 +1,55 @@
-import React, { useEffect } from "react";
-import { Descriptions, Image, Row, Tag, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  Descriptions,
+  Image,
+  Input,
+  Modal,
+  Row,
+  Tag,
+  Typography,
+} from "antd";
 import "./css/profile.css";
 import CoursesTable from "../../components/Table";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import EditProfile from "./editprofile";
 
 const { Title } = Typography;
+const tabList = [
+  {
+    key: "User Info",
+    tab: "User Info",
+  },
+  {
+    key: "About Me",
+    tab: "About Me",
+  },
+];
 
 const Profile = () => {
   const profile_data = useSelector((state) => state.getuser).result;
+  const [activeTabKey1, setActiveTabKey1] = useState("User Info");
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setOpen(false);
+  };
+
+  const onTab1Change = (key) => {
+    setActiveTabKey1(key);
+  };
   useEffect(() => {
     console.log(profile_data);
   }, []);
@@ -31,33 +73,53 @@ const Profile = () => {
                   </Tag>
                 </h1>
               </div>
-              <Descriptions title="User Info">
-                <Descriptions.Item label="Name">
-                  {profile_data.result.name}{" "}
-                </Descriptions.Item>
-                <Descriptions.Item label="Email">
-                  {profile_data.result.email}
-                </Descriptions.Item>
-                <Descriptions.Item label="Mobile Number">
-                  {profile_data.result.mobile_number}
-                </Descriptions.Item>
-                <Descriptions.Item label="Residence">
-                  {profile_data.result.residence}
-                </Descriptions.Item>
-                <Descriptions.Item label="Gender">
-                  {profile_data.result.gender}
-                </Descriptions.Item>
-                <Descriptions.Item label="Date of Birth">
-                  {profile_data.result.date_of_birth}
-                </Descriptions.Item>
-                <Descriptions.Item label="Introduction">
-                  {profile_data.result.introduction}
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nesciunt omnis maiores impedit atque, sed nam? Quisquam
-                  consequuntur cumque minima! Porro impedit nulla, fuga
-                  assumenda quos excepturi nihil dolorem praesentium nobis?
-                </Descriptions.Item>
-              </Descriptions>
+              <Card
+                style={{
+                  width: "100%",
+                }}
+                tabBarExtraContent={
+                  <Link
+                    to="#"
+                    className="text-blue-600 hover:text-gray-400"
+                    onClick={showModal}
+                  >
+                    Edit
+                  </Link>
+                }
+                tabList={tabList}
+                activeTabKey={activeTabKey1}
+                onTabChange={onTab1Change}
+              >
+                {activeTabKey1 === tabList[0].key && (
+                  <Descriptions title="" bordered>
+                    <Descriptions.Item label="Name">
+                      {profile_data.result.name}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Email">
+                      {profile_data.result.email}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Mobile Number">
+                      {profile_data.result.mobile_number}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Residence">
+                      {profile_data.result.residence}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Gender">
+                      {profile_data.result.gender}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Date of Birth">
+                      {profile_data.result.date_of_birth}
+                    </Descriptions.Item>
+                  </Descriptions>
+                )}
+                {activeTabKey1 === tabList[1].key && (
+                  <Descriptions title="" bordered>
+                    <Descriptions.Item label="Introduction">
+                      {profile_data.result.introduction}
+                    </Descriptions.Item>
+                  </Descriptions>
+                )}
+              </Card>
             </div>
           </div>
         </div>
@@ -67,6 +129,21 @@ const Profile = () => {
         <div className="container">
           <CoursesTable />
         </div>
+        <Modal
+          title="Edit Profile"
+          open={open}
+          onOk={handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={handleCancel}
+          width={1000}
+        >
+          <EditProfile
+            showModal={showModal}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            profile_data={profile_data}
+          />
+        </Modal>
       </div>
     </>
   );

@@ -3,19 +3,15 @@ import {
   Avatar,
   Button,
   Checkbox,
-  DatePicker,
   Form,
   Input,
   Select,
   Switch,
-  Upload,
   message,
 } from "antd";
 import { useState } from "react";
-import "./style.css";
-import { RegisterUserService } from "../../services/auth/register";
 import { useDispatch } from "react-redux";
-import { UploadOutlined, UserOutlined } from "@ant-design/icons";
+import { EditProfileService } from "../../services/auth/editprofile";
 
 const { Option } = Select;
 
@@ -49,12 +45,11 @@ const tailFormItemLayout = {
     },
   },
 };
-const Register = () => {
+const EditProfile = ({ showModal, onOk, confirmLoading, profile_data }) => {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
-  const [isUploaded, setUploaded] = useState(false);
 
   const onFinish = async (values) => {
     const key = "updatable";
@@ -64,37 +59,55 @@ const Register = () => {
       content: "Loading...",
     });
     console.log("Received values of form: ", values);
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      const buffer = event.target.result; // The file buffer
-      const mimeType = image.type;
+    try {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const buffer = event.target.result; // The file buffer
+        const mimeType = image.type;
 
+        // Create a FormData object to send the file
+        const formData = new FormData();
+        formData.append(
+          "file",
+          new Blob([buffer], { type: mimeType }),
+          image.name
+        );
+        formData.append("residence", values.residence);
+        formData.append("mobile_number", values.mobile_number);
+        formData.append("introduction", values.introduction);
+        formData.append("gender", values.gender);
+        formData.append("date_of_birth", values.date_of_birth);
+        formData.append("isTeacher", values.isTeacher);
+        formData.append("_id", profile_data.result._id);
+        console.log("Received values of form: ", formData);
+        const res = await EditProfileService(formData, dispatch);
+        messageApi.open({
+          key,
+          type: "success",
+          content: res,
+          duration: 3,
+        });
+      };
+      reader.readAsArrayBuffer(image);
+    } catch {
       // Create a FormData object to send the file
       const formData = new FormData();
-      formData.append(
-        "file",
-        new Blob([buffer], { type: mimeType }),
-        image.name
-      );
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("password", values.password);
       formData.append("residence", values.residence);
       formData.append("mobile_number", values.mobile_number);
       formData.append("introduction", values.introduction);
       formData.append("gender", values.gender);
       formData.append("date_of_birth", values.date_of_birth);
       formData.append("isTeacher", values.isTeacher);
+      formData.append("_id", profile_data.result._id);
       console.log("Received values of form: ", formData);
-      const res = await RegisterUserService(formData, dispatch);
+      const res = await EditProfileService(formData, dispatch);
       messageApi.open({
         key,
         type: "success",
         content: res,
         duration: 3,
       });
-    };
-    reader.readAsArrayBuffer(image);
+    }
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -109,30 +122,37 @@ const Register = () => {
     </Form.Item>
   );
   return (
-    <div className="container-register">
+    <>
       {contextHolder}
       <Form
         {...formItemLayout}
         form={form}
         name="register"
-        className="container-register-form"
         onFinish={onFinish}
+        initialValues={{
+          prefix: "91",
+          name: profile_data.result.name,
+          email: profile_data.result.email,
+          mobile_number: profile_data.result.mobile_number,
+          introduction: profile_data.result.introduction,
+          gender: profile_data.result.gender,
+          date_of_birth: profile_data.result.date_of_birth,
+          isTeacher: profile_data.result.isTeacher,
+          residence: profile_data.result.residence,
+        }}
         scrollToFirstError
         noValidate
       >
         <span className="form-head">
-          <h4>Register</h4>
-        </span>
-        <span className="form-head">
-          {image && (
-            <Avatar size={100}>
-              <img
-                src={URL.createObjectURL(image)}
-                alt="Image"
-                style={{ transform: "scale(2) translateY(10px)" }}
-              />{" "}
-            </Avatar>
-          )}
+          <Avatar size={100}>
+            <img
+              src={
+                image ? URL.createObjectURL(image) : profile_data.profileImage
+              }
+              alt="Image"
+              style={{ transform: "scale(2) translateY(10px)" }}
+            />{" "}
+          </Avatar>
         </span>
         <Form.Item
           name="isTeacher"
@@ -149,6 +169,8 @@ const Register = () => {
             checkedChildren="Teacher"
             className="bg-gray-600"
             unCheckedChildren="Student"
+            defaultChecked={profile_data.result.isTeacher}
+            disabled
           />
         </Form.Item>
         <Form.Item
@@ -163,7 +185,7 @@ const Register = () => {
             },
           ]}
         >
-          <Input />
+          <Input disabled />
         </Form.Item>
         <Form.Item
           name="email"
@@ -179,57 +201,23 @@ const Register = () => {
             },
           ]}
         >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name="confirm"
-          label="Confirm Password"
-          dependencies={["password"]}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "Please confirm your password!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error("The two passwords that you entered do not match!")
-                );
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
+          <Input disabled />
         </Form.Item>
         <Form.Item
           name="profileImage"
           label="Profile Image"
           rules={[
             {
-              required: true,
+              required: false,
               message: "Please Upload Profile Image",
             },
           ]}
         >
+          {/* <Upload name="file" onChange={() => setUploaded(true)}>
+            {!isUploaded && (
+              <Button icon={<UploadOutlined />}>Click to Upload</Button>
+            )}
+          </Upload> */}
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </Form.Item>
         <Form.Item
@@ -237,7 +225,7 @@ const Register = () => {
           label="Date of Birth"
           rules={[
             {
-              required: true,
+              required: false,
               message: "Please write Date of Birth",
             },
           ]}
@@ -302,38 +290,18 @@ const Register = () => {
             <Option value="other">Other</Option>
           </Select>
         </Form.Item>
-        <Form.Item
-          name="agreement"
-          valuePropName="checked"
-          rules={[
-            {
-              validator: (_, value) =>
-                value
-                  ? Promise.resolve()
-                  : Promise.reject(new Error("Should accept agreement")),
-            },
-          ]}
-          {...tailFormItemLayout}
-        >
-          <Checkbox>
-            I have read the{" "}
-            <a href="" target="_blank">
-              agreement
-            </a>
-          </Checkbox>
-        </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            loading={false}
+            loading={confirmLoading}
           >
-            Register
+            Edit
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </>
   );
 };
-export default Register;
+export default EditProfile;

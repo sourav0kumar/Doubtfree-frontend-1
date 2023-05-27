@@ -29,7 +29,11 @@ const CourseCard = ({ title, description, rating, price, imageUrl }) => {
         cover={
           <img
             alt="course cover"
-            src={"https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"}
+            src={
+              imageUrl
+                ? imageUrl
+                : "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            }
           />
         }
         actions={[
@@ -54,16 +58,20 @@ const CourseCard = ({ title, description, rating, price, imageUrl }) => {
                 />
               </Col>
             </Row>
-          </div>
+          </div>,
         ]}
       >
         <Meta
-          avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+          avatar={
+            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
+          }
           title={title}
           description={description}
         />
       </Card>
-      {showPayment && <Payment visible={showPayment} onCancel={handlePaymentCancel} />}
+      {showPayment && (
+        <Payment visible={showPayment} onCancel={handlePaymentCancel} />
+      )}
     </>
   );
 };

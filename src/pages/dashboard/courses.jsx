@@ -4,101 +4,12 @@ import "./css/profile.css";
 import CoursesTable from "../../components/Table";
 import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
+import { useSelector } from "react-redux";
 
 const { Title, Text } = Typography;
 
 const Courses = () => {
-  const machineLearningCourses = [
-    {
-      title: "Machine Learning Course 1",
-      description: "This is the description for Machine Learning Course 1",
-      rating: 4.5,
-      price: "$199",
-      imageUrl: "https://example.com/image1.jpg",
-    },
-    {
-      title: "Machine Learning Course 2",
-      description: "This is the description for Machine Learning Course 2",
-      rating: 4.2,
-      price: "$149",
-      imageUrl: "https://example.com/image2.jpg",
-    },
-    {
-      title: "Machine Learning Course 3",
-      description: "This is the description for Machine Learning Course 2",
-      rating: 4.2,
-      price: "$149",
-      imageUrl: "https://example.com/image2.jpg",
-    },
-    {
-      title: "Machine Learning Course 4",
-      description: "This is the description for Machine Learning Course 2",
-      rating: 4.2,
-      price: "$149",
-      imageUrl: "https://example.com/image2.jpg",
-    },
-    {
-      title: "Machine Learning Course 5",
-      description: "This is the description for Machine Learning Course 2",
-      rating: 4.2,
-      price: "$149",
-      imageUrl: "https://example.com/image2.jpg",
-    },
-    {
-      title: "Machine Learning Course 6",
-      description: "This is the description for Machine Learning Course 2",
-      rating: 4.2,
-      price: "$149",
-      imageUrl: "https://example.com/image2.jpg",
-    },
-    // Add more machine learning courses as needed
-  ];
-
-  const dataScienceCourses = [
-    {
-      title: "Data Science Course 1",
-      description: "This is the description for Data Science Course 1",
-      rating: 4.8,
-      price: "$249",
-      imageUrl: "https://example.com/image3.jpg",
-    },
-    {
-      title: "Data Science Course 2",
-      description: "This is the description for Data Science Course 2",
-      rating: 4.7,
-      price: "$199",
-      imageUrl: "https://example.com/image4.jpg",
-    },
-    {
-      title: "Data Science Course 3",
-      description: "This is the description for Data Science Course 2",
-      rating: 4.7,
-      price: "$199",
-      imageUrl: "https://example.com/image4.jpg",
-    },
-    {
-      title: "Data Science Course 4",
-      description: "This is the description for Data Science Course 2",
-      rating: 4.7,
-      price: "$199",
-      imageUrl: "https://example.com/image4.jpg",
-    },
-    {
-      title: "Data Science Course 5",
-      description: "This is the description for Data Science Course 2",
-      rating: 4.7,
-      price: "$199",
-      imageUrl: "https://example.com/image4.jpg",
-    },
-    {
-      title: "Data Science Course 6",
-      description: "This is the description for Data Science Course 2",
-      rating: 4.7,
-      price: "$199",
-      imageUrl: "https://example.com/image4.jpg",
-    },
-    // Add more data science courses as needed
-  ];
+  const courses = useSelector((state) => state.getcourses).result;
 
   return (
     <>
@@ -118,7 +29,28 @@ const Courses = () => {
           <Text type="secondary">Search by title, date, etc.</Text>
         </Row>
         <Row>
-          <Title level={4} className="text-2xl font-semibold">MACHINE LEARNING</Title>
+          <Title level={4} className="text-2xl font-semibold">
+            All
+          </Title>
+        </Row>
+        <Row gutter={[16, 16]}>
+          {courses &&
+            courses?.map((course, index) => (
+              <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
+                <CourseCard
+                  title={course.course.title}
+                  description={course.course.description}
+                  rating={4.8}
+                  price={course.course.fee}
+                  imageUrl={course.bannerImageUrl}
+                />
+              </Col>
+            ))}
+        </Row>
+        <Row>
+          <Title level={4} className="text-2xl font-semibold">
+            MACHINE LEARNING
+          </Title>
         </Row>
         <Row gutter={[16, 16]}>
           {machineLearningCourses.map((course, index) => (
@@ -134,7 +66,9 @@ const Courses = () => {
           ))}
         </Row>
         <Row>
-          <Title level={4} className="text-2xl font-semibold">DATA SCIENCE</Title>
+          <Title level={4} className="text-2xl font-semibold">
+            DATA SCIENCE
+          </Title>
         </Row>
         <Row gutter={[16, 16]}>
           {dataScienceCourses.map((course, index) => (
@@ -156,3 +90,95 @@ const Courses = () => {
 };
 
 export default Courses;
+
+const machineLearningCourses = [
+  {
+    title: "Machine Learning Course 1",
+    description: "This is the description for Machine Learning Course 1",
+    rating: 4.5,
+    price: "$199",
+    imageUrl: "https://example.com/image1.jpg",
+  },
+  {
+    title: "Machine Learning Course 2",
+    description: "This is the description for Machine Learning Course 2",
+    rating: 4.2,
+    price: "$149",
+    imageUrl: "https://example.com/image2.jpg",
+  },
+  {
+    title: "Machine Learning Course 3",
+    description: "This is the description for Machine Learning Course 2",
+    rating: 4.2,
+    price: "$149",
+    imageUrl: "https://example.com/image2.jpg",
+  },
+  {
+    title: "Machine Learning Course 4",
+    description: "This is the description for Machine Learning Course 2",
+    rating: 4.2,
+    price: "$149",
+    imageUrl: "https://example.com/image2.jpg",
+  },
+  {
+    title: "Machine Learning Course 5",
+    description: "This is the description for Machine Learning Course 2",
+    rating: 4.2,
+    price: "$149",
+    imageUrl: "https://example.com/image2.jpg",
+  },
+  {
+    title: "Machine Learning Course 6",
+    description: "This is the description for Machine Learning Course 2",
+    rating: 4.2,
+    price: "$149",
+    imageUrl: "https://example.com/image2.jpg",
+  },
+  // Add more machine learning courses as needed
+];
+
+const dataScienceCourses = [
+  {
+    title: "Data Science Course 1",
+    description: "This is the description for Data Science Course 1",
+    rating: 4.8,
+    price: "$249",
+    imageUrl: "https://example.com/image3.jpg",
+  },
+  {
+    title: "Data Science Course 2",
+    description: "This is the description for Data Science Course 2",
+    rating: 4.7,
+    price: "$199",
+    imageUrl: "https://example.com/image4.jpg",
+  },
+  {
+    title: "Data Science Course 3",
+    description: "This is the description for Data Science Course 2",
+    rating: 4.7,
+    price: "$199",
+    imageUrl: "https://example.com/image4.jpg",
+  },
+  {
+    title: "Data Science Course 4",
+    description: "This is the description for Data Science Course 2",
+    rating: 4.7,
+    price: "$199",
+    imageUrl: "https://example.com/image4.jpg",
+  },
+  {
+    title: "Data Science Course 5",
+    description: "This is the description for Data Science Course 2",
+    rating: 4.7,
+    price: "$199",
+    imageUrl: "https://example.com/image4.jpg",
+  },
+  {
+    title: "Data Science Course 6",
+    description: "This is the description for Data Science Course 2",
+    rating: 4.7,
+    price: "$199",
+    imageUrl: "https://example.com/image4.jpg",
+  },
+  // Add more data science courses as needed
+];

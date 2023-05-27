@@ -10,15 +10,18 @@ import About from "./pages/About";
 import Courses from "./pages/dashboard/courses";
 import Contact from "./pages/Contact";
 import DoubtSupport from "./pages/DoubtSupport";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import ForgetPassword from "./pages/forget password";
 import ChangePassword from "./pages/change password";
 import Upload_test from "./upload_test";
+import { GetAllCourseService } from "./services/courses/get";
 
 function App() {
+  const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.verify).result;
   useEffect(() => {
+    GetAllCourseService(dispatch);
     if (isLoggedIn) {
       console.log("Logged IN");
     }
@@ -30,15 +33,12 @@ function App() {
       </div>{" "}
       <Routes>
         <Route path="/" element={<Home />} />{" "}
-        
         {isLoggedIn && (
           <>
             <Route path="/dashboard/*" element={<Dashboard />} />{" "}
           </>
         )}{" "}
-
-            {/* <Route path="/dashboard/*" element={<Dashboard />} />{" "} */}
-
+        {/* <Route path="/dashboard/*" element={<Dashboard />} />{" "} */}
         {!isLoggedIn && (
           <>
             <Route path="/login" element={<LoginDemo />} />{" "}
@@ -47,8 +47,6 @@ function App() {
             <Route path="/register" element={<Register />} />{" "}
           </>
         )}{" "}
-
-
         <Route path="/courses" element={<Courses />} />{" "}
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
