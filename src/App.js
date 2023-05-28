@@ -16,6 +16,7 @@ import ForgetPassword from "./pages/forget password";
 import ChangePassword from "./pages/change password";
 import Upload_test from "./upload_test";
 import { GetAllCourseService } from "./services/courses/get";
+import ResetPassword from "./pages/reset password";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,12 +39,13 @@ function App() {
             <Route path="/dashboard/*" element={<Dashboard />} />{" "}
           </>
         )}{" "}
-        {/* <Route path="/dashboard/*" element={<Dashboard />} />{" "} */}
+        {/* <Route path="/dashboard/*" element={<Dashboard />} />{" "} */}{" "}
         {!isLoggedIn && (
           <>
             <Route path="/login" element={<LoginDemo />} />{" "}
             <Route path="/forget-password" element={<ForgetPassword />} />{" "}
             <Route path="/change-password" element={<ChangePassword />} />{" "}
+            <Route path="/register" element={<Register />} />{" "}
             <Route path="/register" element={<Register />} />{" "}
           </>
         )}{" "}
@@ -52,6 +54,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/test" element={<Upload_test />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
+        <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
       </Routes>{" "}
       {/* <Footer /> */}{" "}

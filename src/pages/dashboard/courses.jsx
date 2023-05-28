@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const { Title, Text } = Typography;
 
-const Courses = () => {
+const Courses = ({ setActive }) => {
   const courses = useSelector((state) => state.getcourses).result;
 
   return (
@@ -38,11 +38,13 @@ const Courses = () => {
             courses?.map((course, index) => (
               <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
                 <CourseCard
+                  id={course.course._id}
                   title={course.course.title}
                   description={course.course.description}
                   rating={4.8}
                   price={course.course.fee}
                   imageUrl={course.bannerImageUrl}
+                  setActive={setActive}
                 />
               </Col>
             ))}
@@ -56,6 +58,7 @@ const Courses = () => {
           {machineLearningCourses.map((course, index) => (
             <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
               <CourseCard
+                _id={"asfdgf"}
                 title={course.title}
                 description={course.description}
                 rating={course.rating}
@@ -74,6 +77,7 @@ const Courses = () => {
           {dataScienceCourses.map((course, index) => (
             <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
               <CourseCard
+                _id={"dsfghm"}
                 title={course.title}
                 description={course.description}
                 rating={course.rating}

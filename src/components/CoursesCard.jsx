@@ -3,10 +3,19 @@ import { ShoppingCartOutlined, StarFilled } from "@ant-design/icons";
 import { Avatar, Card, Row, Col } from "antd";
 
 import Payment from "../pages/Payment";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const CourseCard = ({ title, description, rating, price, imageUrl }) => {
+const CourseCard = ({
+  id,
+  title,
+  description,
+  rating,
+  price,
+  imageUrl,
+  setActive,
+}) => {
   const [showPayment, setShowPayment] = useState(false);
 
   const handleCartClick = () => {
@@ -48,6 +57,16 @@ const CourseCard = ({ title, description, rating, price, imageUrl }) => {
               <Col>
                 <div className="price mr-6" style={{ fontSize: "16px" }}>
                   {price}
+                </div>
+              </Col>
+              <Col>
+                <div className="price mr-6" style={{ fontSize: "16px" }}>
+                  <Link
+                    to={`/dashboard/courses/${id}`}
+                    onClick={() => setActive("-1")}
+                  >
+                    View
+                  </Link>
                 </div>
               </Col>
               <Col>

@@ -7,9 +7,11 @@ export async function AddCourseService(formData, dispatch) {
     };
     const res = await axios.post(`http://127.0.0.1:5000/addcourse`, formData, { headers });
     console.log(res);
-    if (res.error) {
+    if (res.data.error) {
         console.log(res.data);
-        msg = "Some Error occurred.";
+        msg = res.data.error;
+    } else if (res.data.error === "Access Denied! You are not eligible to add course.") {
+        msg = res.data.error;
     } else {
         msg = "Course Added";
     }
