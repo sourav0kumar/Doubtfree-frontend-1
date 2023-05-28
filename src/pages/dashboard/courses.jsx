@@ -6,6 +6,9 @@ import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 
+import { machineLearningCourses, dataScienceCourses } from "../../components/data";
+
+
 const { Title, Text } = Typography;
 
 const Courses = () => {
@@ -70,7 +73,7 @@ const Courses = () => {
             DATA SCIENCE
           </Title>
         </Row>
-        <Row gutter={[16, 16]}>
+        <Row gutter={[16, 16]}> 
           {dataScienceCourses.map((course, index) => (
             <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
               <CourseCard
@@ -91,94 +94,3 @@ const Courses = () => {
 
 export default Courses;
 
-const machineLearningCourses = [
-  {
-    title: "Machine Learning Course 1",
-    description: "This is the description for Machine Learning Course 1",
-    rating: 4.5,
-    price: "$199",
-    imageUrl: "https://example.com/image1.jpg",
-  },
-  {
-    title: "Machine Learning Course 2",
-    description: "This is the description for Machine Learning Course 2",
-    rating: 4.2,
-    price: "$149",
-    imageUrl: "https://example.com/image2.jpg",
-  },
-  {
-    title: "Machine Learning Course 3",
-    description: "This is the description for Machine Learning Course 2",
-    rating: 4.2,
-    price: "$149",
-    imageUrl: "https://example.com/image2.jpg",
-  },
-  {
-    title: "Machine Learning Course 4",
-    description: "This is the description for Machine Learning Course 2",
-    rating: 4.2,
-    price: "$149",
-    imageUrl: "https://example.com/image2.jpg",
-  },
-  {
-    title: "Machine Learning Course 5",
-    description: "This is the description for Machine Learning Course 2",
-    rating: 4.2,
-    price: "$149",
-    imageUrl: "https://example.com/image2.jpg",
-  },
-  {
-    title: "Machine Learning Course 6",
-    description: "This is the description for Machine Learning Course 2",
-    rating: 4.2,
-    price: "$149",
-    imageUrl: "https://example.com/image2.jpg",
-  },
-  // Add more machine learning courses as needed
-];
-
-const dataScienceCourses = [
-  {
-    title: "Data Science Course 1",
-    description: "This is the description for Data Science Course 1",
-    rating: 4.8,
-    price: "$249",
-    imageUrl: "https://example.com/image3.jpg",
-  },
-  {
-    title: "Data Science Course 2",
-    description: "This is the description for Data Science Course 2",
-    rating: 4.7,
-    price: "$199",
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  {
-    title: "Data Science Course 3",
-    description: "This is the description for Data Science Course 2",
-    rating: 4.7,
-    price: "$199",
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  {
-    title: "Data Science Course 4",
-    description: "This is the description for Data Science Course 2",
-    rating: 4.7,
-    price: "$199",
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  {
-    title: "Data Science Course 5",
-    description: "This is the description for Data Science Course 2",
-    rating: 4.7,
-    price: "$199",
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  {
-    title: "Data Science Course 6",
-    description: "This is the description for Data Science Course 2",
-    rating: 4.7,
-    price: "$199",
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  // Add more data science courses as needed
-];

@@ -17,6 +17,8 @@ import ChangePassword from "./pages/change password";
 import Upload_test from "./upload_test";
 import { GetAllCourseService } from "./services/courses/get";
 
+import CourseStructure from "./components/CourseStructure";
+
 function App() {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.verify).result;
@@ -52,8 +54,12 @@ function App() {
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/test" element={<Upload_test />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
+
+        <Route path="/courseContent" element={<CourseStructure/>} />{" "}  
+
         <Route path="/*" element={<Navigate to="/" />} />{" "}
       </Routes>{" "}
+
       {/* <Footer /> */}{" "}
     </>
   );
