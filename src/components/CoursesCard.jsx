@@ -4,10 +4,19 @@ import { Avatar, Card, Row, Col } from "antd";
 
 import { Link } from "react-router-dom";
 import Payment from "../pages/Payment";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const CourseCard = ({ title, description, rating, price, imageUrl }) => {
+const CourseCard = ({
+  id,
+  title,
+  description,
+  rating,
+  price,
+  imageUrl,
+  setActive,
+}) => {
   const [showPayment, setShowPayment] = useState(false);
 
   const handleCartClick = () => {
@@ -19,8 +28,7 @@ const CourseCard = ({ title, description, rating, price, imageUrl }) => {
   };
 
   return (
-    <>
-                
+    <>   
           <Card
             style={{
               width: 300,
@@ -35,6 +43,52 @@ const CourseCard = ({ title, description, rating, price, imageUrl }) => {
                   src={
                     "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                   }
+      <Card
+        style={{
+          width: 300,
+          margin: "20px",
+          borderRadius: "10px",
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        }}
+        cover={
+          <img
+            alt="course cover"
+            src={
+              imageUrl
+                ? imageUrl
+                : "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            }
+          />
+        }
+        actions={[
+          <div className="course-details">
+            <Row justify="center" align="middle">
+              <Col>
+                <StarFilled style={{ fontSize: "20px", color: "#1890ff" }} />
+              </Col>
+              <Col className="mr-6" style={{ fontSize: "16px" }}>
+                {rating}
+              </Col>
+              <Col>
+                <div className="price mr-6" style={{ fontSize: "16px" }}>
+                  {price}
+                </div>
+              </Col>
+              <Col>
+                <div className="price mr-6" style={{ fontSize: "16px" }}>
+                  <Link
+                    to={`/dashboard/courses/${id}`}
+                    onClick={() => setActive("-1")}
+                  >
+                    View
+                  </Link>
+                </div>
+              </Col>
+              <Col>
+                <ShoppingCartOutlined
+                  key="cart"
+                  style={{ fontSize: "24px", color: "#1890ff" }}
+                  onClick={handleCartClick}
                 />
               </Link>
             }

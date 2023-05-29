@@ -2,11 +2,11 @@ import React from "react";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, message } from "antd";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { ForgetPasswordService } from "../../services/auth/forgetpass";
+import { Link, useParams } from "react-router-dom";
+import { NewPasswordService } from "../../services/auth/newpassword";
 
-const ForgetPassword = () => {
-  const dispatch = useDispatch();
+const ResetPassword = () => {
+  const { token } = useParams();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values) => {
@@ -17,7 +17,7 @@ const ForgetPassword = () => {
       type: "loading",
       content: "Loading...",
     });
-    const res = await ForgetPasswordService(values.email);
+    const res = await NewPasswordService(values.password, token);
     messageApi.open({
       key,
       type: "success",
@@ -39,21 +39,46 @@ const ForgetPassword = () => {
           noValidate
         >
           <span className="form-head">
-            <h4>Forget Password</h4>
+            <h4>Reset Password</h4>
           </span>
           <Form.Item
-            name="email"
+            name="password"
+            label="New Password"
             rules={[
               {
                 required: true,
-                message: "Please input your Email!",
+                message: "Please input your new password!",
               },
             ]}
+            hasFeedback
           >
-            <Input
-              prefix={<MailOutlined className="site-form-item-icon" />}
-              placeholder="eg. user@gmail.com"
-            />
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            name="confirm"
+            label="Confirm New Password"
+            dependencies={["password"]}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: "Please confirm your new password!",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      "The two passwords that you entered do not match!"
+                    )
+                  );
+                },
+              }),
+            ]}
+          >
+            <Input.Password />
           </Form.Item>
           <Form.Item>
             <Button
@@ -61,7 +86,7 @@ const ForgetPassword = () => {
               htmlType="submit"
               className="login-form-button"
             >
-              Forget Password
+              Confirm Password
             </Button>
             Or <Link to="/login">Login</Link>
           </Form.Item>
@@ -71,4 +96,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default ResetPassword;

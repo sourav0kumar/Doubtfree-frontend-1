@@ -1,13 +1,12 @@
 import React from "react";
 import {
-  FileOutlined,
   UserOutlined,
   DesktopOutlined,
-  TeamOutlined,
   ArrowLeftOutlined,
   FolderAddOutlined,
+  QuestionCircleOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, Button, Layout, Menu, Space, theme } from "antd";
+import { Breadcrumb, Image, Layout, theme } from "antd";
 import { useState } from "react";
 import Profile from "./profile";
 import Playground from "../Playground";
@@ -15,34 +14,15 @@ import Playground from "../Playground";
 import Courses from "./courses";
 import { Link, Route, Routes } from "react-router-dom";
 import AddCourse from "./addcourse";
-const { Header, Content, Footer, Sider } = Layout;
-
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-
-const items = [
-  getItem("Profile", "1", <UserOutlined />),
-  getItem("Courses", "2", <DesktopOutlined />),
-  getItem("Playground", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-];
+import { useSelector } from "react-redux";
+import { Typography } from "antd";
+import LearnCourse from "./course";
+const { Content, Footer, Sider } = Layout;
+const { Title } = Typography;
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const getuser = useSelector((state) => state.getuser).result;
   const [active, setActive] = useState("1");
   const {
     token: { colorBgContainer },
@@ -60,15 +40,24 @@ const Dashboard = () => {
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
         >
-          <div className="demo-logo-vertical" />
           <div className="side-bar-links">
+            <div>
+              <Image
+                preview={false}
+                width={80}
+                height={80}
+                className="rounded-circle my-3 border-4 border-solid border-blue-500"
+                src={getuser.profileImage}
+                fallback="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              />
+            </div>
             <Link
               to="/dashboard/profile"
               className={active === "1" ? "active" : ""}
               onClick={() => setActive("1")}
             >
               <UserOutlined style={{ marginRight: "5px" }} />
-              {!collapsed && "Profile"}
+              {!collapsed && "My Profile"}
             </Link>
             <Link
               to="/dashboard/courses"
@@ -77,7 +66,7 @@ const Dashboard = () => {
             >
               {" "}
               <DesktopOutlined style={{ marginRight: "5px" }} />
-              {!collapsed && "Courses"}
+              {!collapsed && "My Courses"}
             </Link>
             <Link
               to="/dashboard/playground"
@@ -88,14 +77,22 @@ const Dashboard = () => {
               <DesktopOutlined style={{ marginRight: "5px" }} />
               {!collapsed && "playground"}
             </Link>
-            <Link
-              to="/dashboard/add-course"
-              className={active === "4" ? "active" : ""}
-              onClick={() => setActive("4")}
-            >
+            {getuser.result.isTeacher && (
+              <Link
+                to="/dashboard/add-course"
+                className={active === "4" ? "active" : ""}
+                onClick={() => setActive("4")}
+              >
+                {" "}
+                <FolderAddOutlined style={{ marginRight: "5px" }} />
+                {!collapsed && "Add Course"}
+              </Link>
+            )}
+            <Link to="/dashboard/profile">
               {" "}
-              <FolderAddOutlined style={{ marginRight: "5px" }} />
-              {!collapsed && "Add Course"}
+              <QuestionCircleOutlined style={{ marginRight: "5px" }} />
+              {!collapsed &&
+                `${getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`}
             </Link>
             <Link to="/">
               {" "}
@@ -122,6 +119,7 @@ const Dashboard = () => {
                 {active === "2" && "Courses"}
                 {active === "3" && "About"}
                 {active === "4" && "Add Course"}
+                {active === "-1" && "Courses / Learn"}
               </Breadcrumb.Item>
             </Breadcrumb>
             <div
@@ -134,7 +132,11 @@ const Dashboard = () => {
               <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/add-course" element={<AddCourse />} />
-                <Route path="/courses" element={<Courses />} />
+                <Route
+                  path="/courses"
+                  element={<Courses setActive={setActive} />}
+                />
+                <Route path="/courses/:id" element={<LearnCourse />} />
                 <Route path="/playground" element={<Playground />} />
               </Routes>
             </div>
