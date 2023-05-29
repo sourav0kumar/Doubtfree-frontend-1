@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { ShoppingCartOutlined, StarFilled } from "@ant-design/icons";
 import { Avatar, Card, Row, Col } from "antd";
-
 import { Link } from "react-router-dom";
 import Payment from "../pages/Payment";
-import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
