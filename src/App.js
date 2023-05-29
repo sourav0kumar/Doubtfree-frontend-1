@@ -14,10 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import ForgetPassword from "./pages/forget password";
 import ChangePassword from "./pages/change password";
-import Upload_test from "./upload_test";
 import { GetAllCourseService } from "./services/courses/get";
 import ResetPassword from "./pages/reset password";
-
+import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
 
 function App() {
@@ -31,9 +30,7 @@ function App() {
   }, []);
   return (
     <>
-      <div>
-        <Navbar />
-      </div>{" "}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />{" "}
         {isLoggedIn && (
@@ -54,12 +51,12 @@ function App() {
         <Route path="/courses" element={<Courses />} />{" "}
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
-        <Route path="/test" element={<Upload_test />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
-        <Route path="/courseContent" element={<CourseStructure/>} />{" "}  
+        <Route path="/courseContent" element={<CourseStructure />} />{" "}
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
       </Routes>
+      {/* <Footer /> */}
     </>
   );
 }

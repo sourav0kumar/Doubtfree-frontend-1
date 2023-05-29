@@ -1,13 +1,14 @@
 import React from "react";
 import { Col, Row, Typography } from "antd";
 import "./css/profile.css";
-import CoursesTable from "../../components/Table";
 import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 
-import { machineLearningCourses, dataScienceCourses } from "../../components/data";
-
+import {
+  machineLearningCourses,
+  dataScienceCourses,
+} from "../../components/data";
 
 const { Title, Text } = Typography;
 
@@ -76,7 +77,7 @@ const Courses = ({ setActive }) => {
             DATA SCIENCE
           </Title>
         </Row>
-        <Row gutter={[16, 16]}> 
+        <Row gutter={[16, 16]}>
           {dataScienceCourses.map((course, index) => (
             <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
               <CourseCard
@@ -97,4 +98,3 @@ const Courses = ({ setActive }) => {
 };
 
 export default Courses;
-
