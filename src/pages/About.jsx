@@ -58,7 +58,7 @@ const About = () => {
                   className="w-full h-auto mb-2"
                 />
                 <h3 className="text-lg font-bold">Sejal Srivastava</h3>
-                <p className="text-gray-800">Cheif Operating Officer</p>
+                <p className="text-gray-800">Chief Operating Officer</p>
               </div>
             </div>
           </section>
