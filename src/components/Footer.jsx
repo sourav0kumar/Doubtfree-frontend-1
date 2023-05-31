@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,10 +14,10 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-4">Company</h4>
             <ul className="list-none">
               <li className="mb-2">
-                <a href="#" className="text-gray-300 hover:text-white">About</a>
+                <Link to="/about" className="text-gray-300 hover:text-white">About</Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="text-gray-300 hover:text-white">Contact</a>
+                <Link to="/contact" className="text-gray-300 hover:text-white">Contact</Link>
               </li>
               <li className="mb-2">
                 <a href="#" className="text-gray-300 hover:text-white">Privacy Policy</a>
@@ -48,14 +49,25 @@ const Footer = () => {
                     </a>
                     </li>
                     <li className="mb-2">
-                    <a href="#" className="text-gray-600 hover:text-gray-800">
+                    <Link 
+                          to="https://twitter.com/DoubtfreeO1" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-gray-800"
+                        >
                         <i className="bi bi-twitter fs-4"></i>
-                    </a>
+                    </Link>
                     </li>
                     <li className="mb-2">
-                    <a href="#" className="text-gray-600 hover:text-gray-800">
-                        <i className="bi bi-instagram fs-4"></i>
-                    </a>
+                    <Link
+                          to="https://www.instagram.com/doubtfreelearning/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-gray-800"
+                        >
+                          <i className="bi bi-instagram fs-4"></i>
+                    </Link>
+
                     </li>
                 </ul>
           </div>
