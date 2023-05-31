@@ -5,7 +5,7 @@ export async function NewPasswordService(password, token) {
     const headers = {
         'Content-Type': 'application/json'
     };
-    const res = await axios.post(`http://127.0.0.1:5000/new-password`, { password, token }, { headers });
+    const res = await axios.post(`process.env.REACT_APP_API_ENDPOINT/new-password`, { password, token }, { headers });
     console.log(res);
     if (res.data.error) {
         console.log(res.data);

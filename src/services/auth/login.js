@@ -5,7 +5,7 @@ import VERIFY_AUTH from '../../actions/verfiy';
 export async function LoginService(email, password, dispatch) {
     // const { email, password, remembe } = values;
     let msg = "Invalid Crediationals";
-    await fetch(`http://127.0.0.1:5000/login`, {
+    await fetch(`process.env.REACT_APP_API_ENDPOINT/login`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

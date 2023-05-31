@@ -5,7 +5,7 @@ export async function AddCourseService(formData, dispatch) {
     const headers = {
         'Content-Type': 'multipart/form-data'
     };
-    const res = await axios.post(`http://127.0.0.1:5000/addcourse`, formData, { headers });
+    const res = await axios.post(`process.env.REACT_APP_API_ENDPOINT/addcourse`, formData, { headers });
     console.log(res);
     if (res.data.error) {
         console.log(res.data);
