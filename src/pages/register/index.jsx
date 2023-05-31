@@ -117,6 +117,9 @@ const Register = () => {
         name="register"
         className="container-register-form"
         onFinish={onFinish}
+        initialValues={{
+          isTeacher: false,
+        }}
         scrollToFirstError
         noValidate
       >
