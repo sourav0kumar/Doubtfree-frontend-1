@@ -5,7 +5,7 @@ export async function ForgetPasswordService(email) {
     const headers = {
         'Content-Type': 'application/json'
     };
-    const res = await axios.post(`process.env.REACT_APP_API_ENDPOINT/resetPassword`, { email }, { headers });
+    const res = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/resetPassword`, { email }, { headers });
     console.log(res);
     if (res.data.error) {
         console.log(res.data);

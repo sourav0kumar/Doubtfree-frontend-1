@@ -9,7 +9,7 @@ export async function RegisterUserService(formData, dispatch) {
     const headers = {
         'Content-Type': 'multipart/form-data'
     };
-    const res = await axios.post('process.env.REACT_APP_API_ENDPOINT/signup', formData, { headers });
+    const res = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/signup`, formData, { headers });
     console.log(res);
     if (res.data.error == "Empty fields") {
         console.log(res);
