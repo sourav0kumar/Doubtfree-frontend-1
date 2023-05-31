@@ -18,6 +18,7 @@ import { GetAllCourseService } from "./services/courses/get";
 import ResetPassword from "./pages/reset password";
 import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
+import Playground  from "./pages/Playground";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,9 @@ function App() {
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
+
+        <Route path="/playground" element={<Playground />} />{" "}
+
         <Route path="/courseContent" element={<CourseStructure />} />{" "}
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}

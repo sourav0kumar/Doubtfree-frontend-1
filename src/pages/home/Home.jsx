@@ -33,6 +33,8 @@ const Home = () => {
 
           <Link
             to="https://doubtfree.in/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
           >
             Learn More
