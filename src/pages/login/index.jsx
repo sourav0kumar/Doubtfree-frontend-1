@@ -23,7 +23,6 @@ const LoginDemo = () => {
       key,
       type: "success",
       content: res,
-      duration: 3,
     });
   };
   return (
@@ -85,7 +84,7 @@ const LoginDemo = () => {
             <Button
               type="primary"
               htmlType="submit"
-              className="login-form-button"
+              className="login-form-button bg-blue-400"
             >
               Log in
             </Button>
