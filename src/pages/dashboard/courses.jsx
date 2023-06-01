@@ -58,39 +58,13 @@ const Courses = ({ setActive }) => {
             MACHINE LEARNING
           </Title>
         </Row>
-        <Row gutter={[16, 16]}>
-          {machineLearningCourses.map((course, index) => (
-            <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
-              <CourseCard
-                _id={"asfdgf"}
-                title={course.title}
-                description={course.description}
-                rating={course.rating}
-                price={course.price}
-                imageUrl={course.imageUrl}
-              />
-            </Col>
-          ))}
-        </Row>
+        <Row gutter={[16, 16]}>{/* ML Courses */}</Row>
         <Row>
           <Title level={4} className="text-2xl font-semibold">
             DATA SCIENCE
           </Title>
         </Row>
-        <Row gutter={[16, 16]}>
-          {dataScienceCourses.map((course, index) => (
-            <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
-              <CourseCard
-                _id={"dsfghm"}
-                title={course.title}
-                description={course.description}
-                rating={course.rating}
-                price={course.price}
-                imageUrl={course.imageUrl}
-              />
-            </Col>
-          ))}
-        </Row>
+        <Row gutter={[16, 16]}>{/* Data Science */}</Row>
         {/* Add more sections or categories as needed */}
       </div>
     </>

@@ -23,7 +23,6 @@ const LoginDemo = () => {
       key,
       type: "success",
       content: res,
-      duration: 3,
     });
   };
   return (

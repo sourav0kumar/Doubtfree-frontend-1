@@ -127,7 +127,6 @@ const AddCourse = () => {
         key,
         type: "success",
         content: res,
-        duration: 3,
       });
     };
     reader.readAsArrayBuffer(image);

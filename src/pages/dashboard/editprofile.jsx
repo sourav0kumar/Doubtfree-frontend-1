@@ -85,7 +85,6 @@ const EditProfile = ({ showModal, onOk, confirmLoading, profile_data }) => {
           key,
           type: "success",
           content: res,
-          duration: 3,
         });
       };
       reader.readAsArrayBuffer(image);
@@ -105,7 +104,6 @@ const EditProfile = ({ showModal, onOk, confirmLoading, profile_data }) => {
         key,
         type: "success",
         content: res,
-        duration: 3,
       });
     }
   };
