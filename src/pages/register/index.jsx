@@ -91,7 +91,6 @@ const Register = () => {
         key,
         type: "success",
         content: res,
-        duration: 3,
       });
     };
     reader.readAsArrayBuffer(image);
@@ -329,7 +328,7 @@ const Register = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="login-form-button bg-blue-400"
             loading={false}
           >
             Register
