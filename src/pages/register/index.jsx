@@ -328,7 +328,7 @@ const Register = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="login-form-button bg-blue-400"
             loading={false}
           >
             Register

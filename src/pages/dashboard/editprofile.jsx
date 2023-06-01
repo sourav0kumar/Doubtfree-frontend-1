@@ -292,7 +292,7 @@ const EditProfile = ({ showModal, onOk, confirmLoading, profile_data }) => {
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="login-form-button bg-blue-400"
             loading={confirmLoading}
           >
             Edit
