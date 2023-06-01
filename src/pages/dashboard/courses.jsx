@@ -5,6 +5,8 @@ import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 
+import AnimatedText from "../../components/AnimatedText";
+
 import {
   machineLearningCourses,
   dataScienceCourses,
@@ -28,15 +30,47 @@ const Courses = ({ setActive }) => {
 
       <div style={{ width: "100%", padding: "20px" }}>
         <Row style={{ paddingBottom: "20px" }}>
-          <Title level={4}>Search Courses</Title>
+          <Title level={4} className="ml-10">Search Courses</Title>
           <Search />
-          <Text type="secondary">Search by title, date, etc.</Text>
+          {/* <Text type="secondary" >Search by title, date,topic etc.</Text> */}
         </Row>
         <Row>
-          <Title level={4} className="text-2xl font-semibold">
-            All
-          </Title>
+
+        <div className="flex f-screen bg-#f9f9f9 mt-1">
+            <div className="flex-1 flex  items-center">
+              <div className="max-w-lg mx-auto p-4">
+                <div className="bg-white rounded-lg p-4">
+                  
+                  <div className="mb-8">
+                    <AnimatedText />
+                  </div>
+                  <p className="text-gray-600 text-xl" style={{ fontFamily: "Poppins" }}>
+                    <span className="font-semibold text-2xl">Doubtfree</span>, the premier coding education platform for school students, offers specialized courses in various domains. Our comprehensive programs equip students with the necessary coding skills and knowledge to excel in these fields.  
+                    <p className="text-black font-semibold mt-5">Join Doubtfree today and embark on a rewarding coding journey.
+                    </p>
+                  </p>
+
+
+                </div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="flex justify-center items-center h-full">
+                {/* Embed your video clip here */}
+                {/* <video src="ztraining-banner.mp4" controls autoplay loop playsInline className="max-w-[90%] h-[90%]"></video> */}
+                <img className="w-[90%] h-[90%] ml-20 align-baseline"src="ezgif.com-optimize.gif" alt="Learning" />
+              </div>
+            </div>
+        </div>
+
+
+
         </Row>
+
+          <Title level={2} className="text-2xl mt-10 font-semibold text-center font-sans">
+            ALL COURSES
+          </Title>
+       
         <Row gutter={[16, 16]}>
           {courses &&
             courses?.map((course, index) => (
