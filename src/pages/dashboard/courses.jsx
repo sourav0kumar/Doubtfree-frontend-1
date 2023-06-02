@@ -21,9 +21,9 @@ const Courses = ({ setActive }) => {
     <>
       <div className="text-center mt-3 mb-2">
         <h1 className="text-4xl md:text-6xl font-bold">
-          What would you like to&nbsp;
+          My&nbsp;
           <span className="text-4xl md:text-6xl font-bold text-blue-600">
-            learn?
+            Courses
           </span>
         </h1>
       </div>
@@ -76,6 +76,7 @@ const Courses = ({ setActive }) => {
                   price={course.course.fee}
                   imageUrl={course.bannerImageUrl}
                   setActive={setActive}
+                  user={course.course.user}
                 />
               </Col>
             ))}
