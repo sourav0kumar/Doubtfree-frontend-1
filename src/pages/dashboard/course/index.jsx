@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Card,
   Collapse,
   Descriptions,
   Drawer,
   Image,
+  Modal,
   Row,
   Tag,
   Typography,
 } from "antd";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { SettingOutlined } from "@ant-design/icons";
+import { Link, redirect, useParams } from "react-router-dom";
+import { FileAddOutlined, SettingOutlined } from "@ant-design/icons";
 import "./style.css";
 import Testimonials from "../../../components/Testimonials";
 import EnrolledStudents from "./list";
+import AddContent from "./addcontent";
+import { isContain } from "./isContain";
+import axios from "axios";
 
 const { Title, Text } = Typography;
 
@@ -32,9 +37,28 @@ const tabList = [
 ];
 
 const LearnCourse = () => {
+  const getuser = useSelector((state) => state.getuser).result;
   const [activeTabKey1, setActiveTabKey1] = useState("User Info");
   const { id } = useParams();
+  const [content, setContent] = useState(null);
+  const [fetchingContent, setFetchingContent] = useState(true);
   const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const showModal = () => {
+    setOpen1(true);
+  };
+  const handleOk = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen1(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setOpen1(false);
+  };
   const showDrawer = () => {
     setOpen(true);
   };
@@ -54,7 +78,6 @@ const LearnCourse = () => {
   const genExtra = () => (
     <SettingOutlined
       onClick={(event) => {
-        // If you don't want click extra trigger collapse, you can prevent this:
         event.stopPropagation();
       }}
     />
@@ -63,9 +86,23 @@ const LearnCourse = () => {
   const onTab1Change = (key) => {
     setActiveTabKey1(key);
   };
+  const handleContent = async () => {
+    setFetchingContent(true);
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}/courses/getcontent?course_id=${id}`
+    );
+    if (res.error) {
+      alert("Error while fetching course content");
+    } else {
+      console.log(res.data);
+      setContent(res.data);
+    }
+    setFetchingContent(false);
+    console.log(content);
+  };
   useEffect(() => {
     console.log(id);
-    console.log(getcourse);
+    handleContent();
   }, []);
   return (
     <>
@@ -77,9 +114,9 @@ const LearnCourse = () => {
         </Row>
         <div className="flex items-center justify-between mb-8">
           <div className="text-lg font-bold">
-            Students Enrolled:{" "}
+            Students Enrolled: {fetchingContent && "Please Wait...."}
             <span className="text-blue-600 cursor-pointer" onClick={showDrawer}>
-              1000+
+              1000+(Open)
             </span>
           </div>
         </div>
@@ -94,9 +131,18 @@ const LearnCourse = () => {
                   width: "100%",
                 }}
                 tabBarExtraContent={
-                  <Link to="#" className="text-blue-600 hover:text-gray-400">
-                    Edit
-                  </Link>
+                  isContain(getuser?.result?.Courses, id) ? (
+                    <Button
+                      onClick={showModal}
+                      type="primary"
+                      className="bg-blue-500"
+                      icon={<FileAddOutlined />}
+                    >
+                      Add Content
+                    </Button>
+                  ) : (
+                    {}
+                  )
                 }
                 tabList={tabList}
                 activeTabKey={activeTabKey1}
@@ -174,66 +220,47 @@ const LearnCourse = () => {
             onChange={onChange}
             expandIconPosition={expandIconPosition}
           >
-            <Panel header="Lecture 1" key="1" extra={genExtra()}>
-              <Title level={4}>Lecture 1</Title>
-              <br />
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Nesciunt temporibus suscipit placeat tenetur facilis repellat,
-                illo mollitia neque ea magnam ratione deserunt exercitationem
-                magni quasi ex ipsum autem aliquid adipisci.
-              </Text>
-              <Title level={5}>Video Lecture</Title>
-              <div className="lecture_card">
-                <div className="lecture_img">
-                  <img src={require("./video.png")} alt="" srcset="" />
-                </div>
-                <div className="lecture_name">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                  ab soluta alias error
-                </div>
-              </div>
-              <Title level={5}>PDF Notes</Title>
-              <div className="lecture_card">
-                <div className="lecture_img">
-                  <img src={require("./pdf.png")} alt="" srcset="" />
-                </div>
-                <div className="lecture_name">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                  ab soluta alias error
-                </div>
-              </div>
-            </Panel>
-            <Panel header="Lecture 2" key="2" extra={genExtra()}>
-              <Title level={4}>Lecture 2</Title>
-              <br />
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Nesciunt temporibus suscipit placeat tenetur facilis repellat,
-                illo mollitia neque ea magnam ratione deserunt exercitationem
-                magni quasi ex ipsum autem aliquid adipisci.
-              </Text>
-              <Title level={5}>Video Lecture</Title>
-              <div className="lecture_card">
-                <div className="lecture_img">
-                  <img src={require("./video.png")} alt="" srcset="" />
-                </div>
-                <div className="lecture_name">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                  ab soluta alias error
-                </div>
-              </div>
-              <Title level={5}>PDF Notes</Title>
-              <div className="lecture_card">
-                <div className="lecture_img">
-                  <img src={require("./pdf.png")} alt="" srcset="" />
-                </div>
-                <div className="lecture_name">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                  ab soluta alias error
-                </div>
-              </div>
-            </Panel>
+            {fetchingContent && (
+              <Panel header="Loading..." key="1" extra={genExtra()}></Panel>
+            )}
+            {!fetchingContent &&
+              content &&
+              content.map((c) => {
+                return (
+                  <Panel
+                    header={c.content.title}
+                    key={c._id}
+                    extra={genExtra()}
+                  >
+                    <Title level={4}>{c.content.title}</Title>
+                    <br />
+                    <Text>{c.content.description}</Text>
+                    {/* <Title level={5}>Video Lecture</Title>
+                  <div className="lecture_card">
+                    <div className="lecture_img">
+                      <img src={require("./video.png")} alt="" srcset="" />
+                    </div>
+                    <div className="lecture_name">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Odio ab soluta alias error
+                    </div>
+                  </div> */}
+                    <Title level={5}>PDF Notes</Title>
+                    <div
+                      className="lecture_card"
+                      onClick={() => window.open(c.file_url, "_blank")}
+                    >
+                      <div className="lecture_img">
+                        <img src={require("./pdf.png")} alt="" srcset="" />
+                      </div>
+                      <div className="lecture_name">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Odio ab soluta alias error
+                      </div>
+                    </div>
+                  </Panel>
+                );
+              })}
           </Collapse>
         </div>
         <div className="container my-3">
@@ -273,6 +300,16 @@ const LearnCourse = () => {
           <Testimonials />
         </div>
       </div>
+      <Modal
+        title="Add Content"
+        open={open1}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+        width={1000}
+      >
+        <AddContent course_id={id} />
+      </Modal>
       <Drawer
         title="Entrolled Students"
         placement="right"

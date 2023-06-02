@@ -1,22 +1,21 @@
 import React from "react";
 import { Col, Row, Typography } from "antd";
-import "./css/profile.css";
 import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 
 const { Title, Text } = Typography;
 
-const Courses = ({ setActive }) => {
+const CoursesAll = ({ setActive }) => {
   const courses = useSelector((state) => state.getcourses).result;
 
   return (
     <>
       <div className="text-center mt-3 mb-2">
         <h1 className="text-4xl md:text-6xl font-bold">
-          My&nbsp;
+          What would you like to&nbsp;
           <span className="text-4xl md:text-6xl font-bold text-blue-600">
-            Courses
+            learn?
           </span>
         </h1>
       </div>
@@ -44,7 +43,6 @@ const Courses = ({ setActive }) => {
                   price={course.course.fee}
                   imageUrl={course.bannerImageUrl}
                   setActive={setActive}
-                  user={course.course.user}
                 />
               </Col>
             ))}
@@ -67,4 +65,4 @@ const Courses = ({ setActive }) => {
   );
 };
 
-export default Courses;
+export default CoursesAll;

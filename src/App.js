@@ -18,7 +18,8 @@ import { GetAllCourseService } from "./services/courses/get";
 import ResetPassword from "./pages/reset password";
 import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
-import Playground  from "./pages/Playground";
+import Playground from "./pages/Playground";
+import CoursesAll from "./pages/courses all";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,6 @@ function App() {
             <Route path="/dashboard/*" element={<Dashboard />} />{" "}
           </>
         )}{" "}
-        {/* <Route path="/dashboard/*" element={<Dashboard />} />{" "} */}{" "}
         {!isLoggedIn && (
           <>
             <Route path="/login" element={<LoginDemo />} />{" "}
@@ -49,18 +49,15 @@ function App() {
             <Route path="/register" element={<Register />} />{" "}
           </>
         )}{" "}
-        <Route path="/courses" element={<Courses />} />{" "}
+        <Route path="/courses" element={<CoursesAll />} />{" "}
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
-
         <Route path="/playground" element={<Playground />} />{" "}
-
         <Route path="/courseContent" element={<CourseStructure />} />{" "}
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
       </Routes>
-      {/* <Footer /> */}
     </>
   );
 }
