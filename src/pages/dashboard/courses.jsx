@@ -34,47 +34,40 @@ const Courses = ({ setActive }) => {
           <Search />
           {/* <Text type="secondary" >Search by title, date,topic etc.</Text> */}
         </Row>
-        <Row>
 
-        <div className="flex f-screen bg-#f9f9f9 mt-1">
-            <div className="flex-1 flex  items-center">
-              <div className="max-w-lg mx-auto p-4">
-                <div className="bg-white rounded-lg p-4">
-                  
-                  <div className="mb-8">
-                    <AnimatedText />
-                  </div>
-                  <p className="text-gray-600 text-xl" style={{ fontFamily: "Poppins" }}>
-                    <span className="font-semibold text-2xl">Doubtfree</span>, the premier coding education platform for school students, offers specialized courses in various domains. Our comprehensive programs equip students with the necessary coding skills and knowledge to excel in these fields.  
-                    <p className="text-black font-semibold mt-5">Join Doubtfree today and embark on a rewarding coding journey.
-                    </p>
-                  </p>
-
-
-                </div>
-              </div>
-            </div>
-            <div className="flex-1">
-              <div className="flex justify-center items-center h-full">
-                {/* Embed your video clip here */}
-                {/* <video src="ztraining-banner.mp4" controls autoplay loop playsInline className="max-w-[90%] h-[90%]"></video> */}
-                <img className="w-[90%] h-[90%] ml-20 align-baseline"src="ezgif.com-optimize.gif" alt="Learning" />
-              </div>
-            </div>
+        <section>
+  <div className="flex flex-col lg:flex-row bg-#f9f9f9 mt-1">
+    <div className="flex-1 flex justify-center items-center lg:items-start">
+      <div className="max-w-lg mx-auto p-4">
+        <div className="bg-white rounded-lg p-4">
+          <div className="mb-8">
+            <AnimatedText />
+          </div>
+          <p className="text-gray-600 text-xl" style={{ fontFamily: "Poppins" }}>
+            <span className="font-semibold text-2xl">Doubtfree</span>, the premier coding education platform for school students, offers specialized courses in various domains. Our comprehensive programs equip students with the necessary coding skills and knowledge to excel in these fields.
+            <p className="text-black font-semibold mt-5">Join Doubtfree today and embark on a rewarding coding journey.</p>
+          </p>
         </div>
+      </div>
+    </div>
+    <div className="flex-1 mt-4 lg:mt-0 lg:flex justify-center items-center">
+      <div className="h-full">
+        <img className="w-[90%] h-[90%] ml-20 align-baseline" src={process.env.PUBLIC_URL + '/ezgif.com-optimize.gif'} alt="Learning" />
+      </div>
+    </div>
+  </div>
+</section>
 
-
-
-        </Row>
 
           <Title level={2} className="text-2xl mt-10 font-semibold text-center font-sans">
             ALL COURSES
           </Title>
        
         <Row gutter={[16, 16]}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {courses &&
             courses?.map((course, index) => (
-              <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
+              <Col key={index} >
                 <CourseCard
                   id={course.course._id}
                   title={course.course.title}
@@ -86,7 +79,9 @@ const Courses = ({ setActive }) => {
                 />
               </Col>
             ))}
+            </div>
         </Row>
+
         <Row>
           <Title level={4} className="text-2xl font-semibold">
             MACHINE LEARNING

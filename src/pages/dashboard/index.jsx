@@ -21,7 +21,7 @@ const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 
 const Dashboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const getuser = useSelector((state) => state.getuser).result;
   const [active, setActive] = useState("1");
   const {
