@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
+// import ChangePassword from "./pages/grid";
 import Navbar from "./components/Navbar";
 import Home from "./pages/home/Home";
 import LoginDemo from "./pages/login";
@@ -20,6 +21,7 @@ import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
 import Playground from "./pages/Playground";
 import CoursesAll from "./pages/courses all";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +56,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
         <Route path="/playground" element={<Playground />} />{" "}
+       
+
         <Route path="/courseContent" element={<CourseStructure />} />{" "}
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}

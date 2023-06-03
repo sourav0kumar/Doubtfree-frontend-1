@@ -76,7 +76,7 @@ const CodeEditor = () => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Online Code Editor</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">Online Code Editor</h2>
 
       <div className="mb-4">
         <label htmlFor="language" className="block mb-2">

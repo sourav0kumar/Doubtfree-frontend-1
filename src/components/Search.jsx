@@ -44,7 +44,8 @@ const Search = () => {
   return (
     <AutoComplete
       style={{
-        width: "100%",
+        width: "90%",
+        display:'block'
       }}
       options={options}
       onSelect={onSelect}
@@ -52,9 +53,9 @@ const Search = () => {
     >
       <Input.Search
         size="large"
-        placeholder="#title #date #topic"
+        placeholder="Search by title, date, topic"
         enterButton
-        className="search-btn"
+        className="search-btn ml-10"
       />
     </AutoComplete>
   );

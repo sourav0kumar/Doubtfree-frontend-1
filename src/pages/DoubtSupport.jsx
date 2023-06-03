@@ -1,6 +1,8 @@
 import React from "react";
 import Footer from "../components/Footer";
 import QueryBar from "../components/QueryBar";
+import Grid from "./grid/grid";
+import GridLower from "./grid/gridLower";
 
 const DoubtSupport = () => {
   return (
@@ -23,10 +25,21 @@ const DoubtSupport = () => {
         Our Experienced teacher will help your kids develop the resilience, skills, and abilities to respond productively to those changes.
         </div>
       </div>
+    
 
-      <section className="mt-4"> <QueryBar/> </section>
+      <section className="mt-4 "> <div className="z-0"><Grid/></div>
+        <div className="z-23"><QueryBar/></div>
+        <div className="mt-2  z-0"><GridLower/></div>
+        </section>
 
-      <section className="mt-9">
+
+      <header className="bg-blue-600 py-6 mt-0">
+        <div className="container mx-auto px-4">
+          <h1 className="text-white text-center text-4xl font-bold">STILL HAVING DOUBTS?</h1>
+        </div>
+      </header>
+
+      <section className="mt-12">
             <h2 className="text-4xl font-bold mb-4 text-center">Connect with Our Mentors</h2>
 
 
@@ -54,7 +67,7 @@ const DoubtSupport = () => {
                   </p>
                   <a href="https://meet.google.com/fun-xkve-mti" className="btn btn-primary">
                     Join
-                  </a>
+                  </a> 
                 </div>
               </div>
 
