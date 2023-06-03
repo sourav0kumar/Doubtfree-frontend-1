@@ -131,7 +131,8 @@ const LearnCourse = () => {
                   width: "100%",
                 }}
                 tabBarExtraContent={
-                  isContain(getuser?.result?.Courses, id) ? (
+                  isContain(getuser?.result?.Courses, id) &&
+                  getuser?.result?.isTeacher ? (
                     <Button
                       onClick={showModal}
                       type="primary"

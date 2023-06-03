@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { ShoppingCartOutlined, StarFilled } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  ShoppingCartOutlined,
+  StarFilled,
+} from "@ant-design/icons";
 import { Avatar, Card, Row, Col, Button, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Payment from "../pages/Payment";
 import { HouseAddFill, Trash3Fill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteCourseService } from "../services/courses/delete";
+import { EnrollCourseService } from "../services/courses/enroll";
 
 const { Meta } = Card;
 
@@ -22,6 +27,7 @@ const CourseCard = ({
   const [showPayment, setShowPayment] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [deleting, setSetDeleting] = useState(false);
+  const [enrolling, setSetEntrolling] = useState(false);
   const dispatch = useDispatch();
   const handleCartClick = () => {
     setShowPayment(true);
@@ -45,6 +51,23 @@ const CourseCard = ({
       content: res,
     });
     setSetDeleting(false);
+    return;
+  };
+  const handleEnroll = async () => {
+    setSetEntrolling(true);
+    const key = "updatable";
+    messageApi.open({
+      key,
+      type: "loading",
+      content: "Loading...",
+    });
+    const res = await EnrollCourseService(id, getuser?.result._id);
+    messageApi.open({
+      key,
+      type: "success",
+      content: res,
+    });
+    setSetEntrolling(false);
     return;
   };
   return (
@@ -106,18 +129,33 @@ const CourseCard = ({
                   </Button>
                 </Col>
               )}
-              {getuser?.result?._id && getuser?.result?._id != user && (
+              {getuser.result.Courses.indexOf(id) && (
                 <Col>
-                  <Button
-                    className="mx-3 bg-green-500 hover:bg-green-400"
-                    icon={<HouseAddFill />}
-                    type="primary"
-                    loading={false}
-                  >
-                    Enroll
-                  </Button>
+                  <Link to={`/dashboard/courses/${id}`}>
+                    <Button
+                      className="mx-3 bg-pink-500 hover:bg-pink-400"
+                      icon={<CheckCircleOutlined />}
+                      type="primary"
+                    >
+                      {getuser.result.isTeacher ? "Open" : "Enrolled"}
+                    </Button>
+                  </Link>
                 </Col>
               )}
+              {!getuser.result.isTeacher &&
+                !getuser.result.Courses.indexOf(id) && (
+                  <Col>
+                    <Button
+                      className="mx-3 bg-green-500 hover:bg-green-400"
+                      icon={<HouseAddFill />}
+                      type="primary"
+                      loading={enrolling}
+                      onClick={handleEnroll}
+                    >
+                      {enrolling ? "Enrolling.." : "Enroll"}
+                    </Button>
+                  </Col>
+                )}
             </Row>
           </div>,
         ]}
