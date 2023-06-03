@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 
 // import HomeContent from "../../components/HomeContent"
-
-import { TypeAnimation } from "react-type-animation";
 import { items, services_home } from "./constants";
+import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   const [textColor, setTextColor] = useState("black");
@@ -30,6 +29,21 @@ const Home = () => {
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
+      const items = [
+        "aqua",
+        "deeppink",
+        "darkkhaki",
+        "blue",
+        "green",
+        "purple",
+        "pink",
+        "brown",
+        "darkmagenta",
+        "darksalmon",
+        "dodgerblue",
+        "firebrick",
+        "darkviolet",
+      ];
       const randomColor = items[Math.floor(Math.random() * items.length)];
       setTextColor(randomColor);
     }, 1000); // Change color every 3 seconds
@@ -41,57 +55,63 @@ const Home = () => {
 
   return (
     <>
-      
-<div className="container mx-auto px-4 mt-4">
-  <div className="md:flex">
-    <div className="md:w-1/2">
-      <div className="bg-white rounded-lg  p-6">
-        <div className="text-4xl md:text-6xl font-bold">
-          Code, Create,
-          <div className="animation-container" style={{ color: textColor }}>
-            <TypeAnimation
-              sequence={["Conquer!", 900, "Conquer!", 900, "Conquer!", 900, "C", 900]}
-              repeat={Infinity}
-              cursor={false}
-            />
+      <div className="container-home">
+        <div className="home-left">
+          <div className="text-4xl md:text-6xl font-bold">
+            Code, Create,
+            <div className="animation-container" style={{ color: textColor }}>
+              <TypeAnimation
+                sequence={[
+                  "Conquer!",
+                  900,
+                  "Conquer!",
+                  900,
+                  "Conquer!",
+                  900,
+                  "C",
+                  900,
+                ]}
+                repeat={Infinity}
+                cursor={false}
+              />
+            </div>
+            {/* <div className="animation-placeholder" /> */}
+          </div>
+
+          <div className="text-xl inline-block  md:text-3xl mt-4 font-semibold text-green-800 animation-text">
+            Join the Coding Revolution at DoubtFree
           </div>
         </div>
-        <div className="text-xl md:text-3xl mt-4 font-semibold text-green-800">
-          Join the Coding Revolution at DoubtFree
-        </div>
-        <div className="text-gray-700 mt-6">
-          <div className="text-lg font-bold mb-2">
-            Discover the best coding course for your kids.
-          </div>
-          <div className="text-base">Learn Coding from basics.</div>
-          <div className="btn-div my-5">
-            <Link
-              to="/dashboard/courses"
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-lg"
-            >
-              Explore
-            </Link>
-            <Link
-              to="https://doubtfree.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
-            >
-              Learn More
-            </Link>
-          </div>
+        <div className="home-right">
+          <img
+            src="/dizzyeducation-1@2x.png"
+            className="md:max-w-[50%] md:h-[60%]   sm:max-w-[40%] sm:h-[50%]  max-w-[30%] h-[40%] floating-image  mr-4 mt-6"
+          />
         </div>
       </div>
-    </div>
-    <div className="md:w-1/2 mt-6 md:mt-0">
-      <img
-        src="/dizzyeducation-1@2x.png"
-        className="max-w-full h-auto md:max-w-[50%] md:h-[60%] floating-image md:w-1/2 mt-6 md:mt-0 md:order-1"
-      />
-    </div> 
-  </div>
-</div>
+         <div className="text-gray py-4 px-6 text-left container-home1">
+        <div className="text-lg font-bold mb-2">
+          Discover the best coding course for your kids.
+        </div>
+        <div className="text-base">Learn Coding from basics.</div>
+        <div className="btn-div my-5">
+          <Link
+            to="/dashboard/courses"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-lg"
+          >
+            Explore
+          </Link>
 
+          <Link
+            to="https://doubtfree.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
+          >
+            Learn More
+          </Link>
+        </div>
+      </div>
 
       <section className="py-8 bg-gray-100 pb-16 mt-15 md:mt-10">
         <div className="container mx-auto px-4">
@@ -126,6 +146,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <div className="mt-1">
         <Footer />
       </div>
