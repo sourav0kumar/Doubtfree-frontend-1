@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { ShoppingCartOutlined, StarFilled } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  LoginOutlined,
+  ShoppingCartOutlined,
+  StarFilled,
+} from "@ant-design/icons";
 import { Avatar, Card, Row, Col, Button, message } from "antd";
 import { Link } from "react-router-dom";
 import Payment from "../pages/Payment";
 import { HouseAddFill, Trash3Fill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteCourseService } from "../services/courses/delete";
+import { EnrollCourseService } from "../services/courses/enroll";
 
 const { Meta } = Card;
 
@@ -18,10 +24,12 @@ const CourseCard = ({
   imageUrl,
   user,
 }) => {
+  const { isLoggedIn } = useSelector((state) => state.verify).result;
   const getuser = useSelector((state) => state.getuser).result;
   const [showPayment, setShowPayment] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [deleting, setSetDeleting] = useState(false);
+  const [enrolling, setSetEntrolling] = useState(false);
   const dispatch = useDispatch();
   const handleCartClick = () => {
     setShowPayment(true);
@@ -45,6 +53,23 @@ const CourseCard = ({
       content: res,
     });
     setSetDeleting(false);
+    return;
+  };
+  const handleEnroll = async () => {
+    setSetEntrolling(true);
+    const key = "updatable";
+    messageApi.open({
+      key,
+      type: "loading",
+      content: "Loading...",
+    });
+    const res = await EnrollCourseService(id, getuser?.result._id);
+    messageApi.open({
+      key,
+      type: "success",
+      content: res,
+    });
+    setSetEntrolling(false);
     return;
   };
   return (
@@ -92,30 +117,62 @@ const CourseCard = ({
                   onClick={handleCartClick}
                 />
               </Col>
-              {getuser?.result?._id && getuser?.result?._id === user && (
-                <Col>
-                  <Button
-                    className="mx-3"
-                    icon={<Trash3Fill />}
-                    loading={deleting}
-                    type="dashed"
-                    danger
-                    onClick={handleDeleteCourse}
-                  >
-                    {deleting ? "Deleting..." : "Delete"}
-                  </Button>
-                </Col>
+              {isLoggedIn && getuser?.result?.Courses?.indexOf(id) != -1 && (
+                <>
+                  <Col className="flex justify-between flex-row py-3 w-100">
+                    <Link to={`/dashboard/courses/${id}`}>
+                      <Button
+                        className={`mx-3 bg-pink-500 hover:bg-pink-400 w-${
+                          getuser?.result?.isTeacher ? "40" : "60"
+                        }`}
+                        icon={<CheckCircleOutlined />}
+                        type="primary"
+                      >
+                        {getuser?.result?.isTeacher ? "Open" : "Enrolled"}
+                      </Button>
+                    </Link>
+                    {getuser.result.isTeacher && (
+                      <Button
+                        className=""
+                        icon={<Trash3Fill />}
+                        loading={deleting}
+                        type="link"
+                        danger
+                        onClick={handleDeleteCourse}
+                      >
+                        {deleting ? "Deleting..." : "Delete"}
+                      </Button>
+                    )}
+                  </Col>
+                </>
               )}
-              {getuser?.result?._id && getuser?.result?._id != user && (
+              {isLoggedIn &&
+                !getuser?.result?.isTeacher &&
+                getuser?.result?.Courses?.indexOf(id) === -1 && (
+                  <Col>
+                    <Button
+                      className="mx-3 bg-green-500 hover:bg-green-400"
+                      icon={<HouseAddFill />}
+                      type="primary"
+                      loading={enrolling}
+                      onClick={handleEnroll}
+                    >
+                      {enrolling ? "Enrolling.." : "Enroll"}
+                    </Button>
+                  </Col>
+                )}
+              {!isLoggedIn && (
                 <Col>
-                  <Button
-                    className="mx-3 bg-green-500 hover:bg-green-400"
-                    icon={<HouseAddFill />}
-                    type="primary"
-                    loading={false}
-                  >
-                    Enroll
-                  </Button>
+                  <Link to="/login">
+                    <Button
+                      className="mx-3 bg-blue-500 flex justify-content-center align-items-center"
+                      icon={<LoginOutlined />}
+                      type="primary"
+                    >
+                      {" "}
+                      Login
+                    </Button>
+                  </Link>
                 </Col>
               )}
             </Row>

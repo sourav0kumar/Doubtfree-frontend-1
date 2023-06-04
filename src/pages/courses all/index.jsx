@@ -3,6 +3,7 @@ import { Col, Row, Typography } from "antd";
 import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
+import AnimatedText from "../../components/AnimatedText";
 
 import AnimatedText from "../../components/AnimatedText";
 
@@ -28,7 +29,6 @@ const CoursesAll = ({ setActive }) => {
           <Search />
           {/* <Text type="secondary">Search by title, date, etc.</Text> */}
         </Row>
-        
         <section>
         <div className="flex flex-col lg:flex-row bg-#f9f9f9 mt-1">
           <div className="flex-1 flex justify-center items-center lg:items-start">
@@ -51,11 +51,11 @@ const CoursesAll = ({ setActive }) => {
           </div>
         </div>
       </section>
-
+  <Row>
          <Title level={2} className="text-2xl mt-10 font-semibold text-center font-sans">
             ALL COURSES
-          </Title>
-       
+      </Title>  
+  </Row>
         <Row gutter={[16, 16]}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {courses &&
@@ -75,7 +75,6 @@ const CoursesAll = ({ setActive }) => {
             ))}
             </div>
         </Row>
-
         <Row>
           <Title level={4} className="text-2xl font-semibold">
             MACHINE LEARNING
