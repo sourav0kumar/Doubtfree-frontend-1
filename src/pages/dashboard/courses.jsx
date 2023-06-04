@@ -29,7 +29,6 @@ const Courses = ({ setActive }) => {
           Search Courses
         </Title>
         <Search />
-        {/* <Text type="secondary" >Search by title, date,topic etc.</Text> */}
       </Row>
       <div style={{ width: "100%", padding: "20px" }}>
         <Row>
@@ -38,7 +37,7 @@ const Courses = ({ setActive }) => {
           </Title>
         </Row>
         <Row>
-          <div className="w-100 flex justify-center align-middle p-10">
+          <div className="w-100 flex justify-center align-middle flex-wrap">
             {!getuser.Courses?.length && (
               <Empty_
                 description={"Not Found"}
@@ -46,28 +45,24 @@ const Courses = ({ setActive }) => {
                 btn_txt={getuser.isTeacher === true ? "Create" : "Explore"}
               />
             )}
-            {getuser.Courses?.length > 0 &&
-              courses.map((course, index) => {
-                if (course.course.user != getuser._id && getuser.isTeacher) {
-                  return;
-                }
-                if (getuser.Courses.indexOf(course.course._id)) {
-                  return (
-                    <Col key={index}>
-                      <CourseCard
-                        id={course.course._id}
-                        title={course.course.title}
-                        description={course.course.description}
-                        rating={4.8}
-                        price={course.course.fee}
-                        imageUrl={course.bannerImageUrl}
-                        setActive={setActive}
-                        user={course.course.user}
-                      />
-                    </Col>
-                  );
-                }
-              })}
+            {courses.map((course, index) => {
+              if (getuser.Courses.indexOf(course.course._id) != -1) {
+                return (
+                  <Col key={index}>
+                    <CourseCard
+                      id={course.course._id}
+                      title={course.course.title}
+                      description={course.course.description}
+                      rating={4.8}
+                      price={course.course.fee}
+                      imageUrl={course.bannerImageUrl}
+                      setActive={setActive}
+                      user={course.course.user}
+                    />
+                  </Col>
+                );
+              }
+            })}
           </div>
         </Row>
         {!getuser.isTeacher && (
@@ -80,20 +75,24 @@ const Courses = ({ setActive }) => {
             <Row>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {courses &&
-                  courses?.map((course, index) => (
-                    <Col key={index}>
-                      <CourseCard
-                        id={course.course._id}
-                        title={course.course.title}
-                        description={course.course.description}
-                        rating={4.8}
-                        price={course.course.fee}
-                        imageUrl={course.bannerImageUrl}
-                        setActive={setActive}
-                        user={course.course.user}
-                      />
-                    </Col>
-                  ))}
+                  courses?.map((course, index) => {
+                    if (getuser.Courses.indexOf(course.course._id) === -1) {
+                      return (
+                        <Col key={index}>
+                          <CourseCard
+                            id={course.course._id}
+                            title={course.course.title}
+                            description={course.course.description}
+                            rating={4.8}
+                            price={course.course.fee}
+                            imageUrl={course.bannerImageUrl}
+                            setActive={setActive}
+                            user={course.course.user}
+                          />
+                        </Col>
+                      );
+                    }
+                  })}
               </div>
             </Row>
           </>

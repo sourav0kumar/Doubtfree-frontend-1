@@ -317,7 +317,7 @@ const LearnCourse = () => {
         onClose={onClose}
         open={open}
       >
-        <EnrolledStudents />
+        <EnrolledStudents id={id} />
       </Drawer>
     </>
   );

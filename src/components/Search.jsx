@@ -1,42 +1,49 @@
 import React from "react";
 import { AutoComplete, Input } from "antd";
 import { useState } from "react";
-const getRandomInt = (max, min = 0) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-const searchResult = (query) =>
-  new Array(getRandomInt(5))
-    .join(".")
-    .split(".")
-    .map((_, idx) => {
-      const category = `${query}${idx}`;
-      return {
-        value: category,
-        label: (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <span>
-              Found {query} on{" "}
-              <a
-                href={`https://s.taobao.com/search?q=${query}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {category}
-              </a>
-            </span>
-            <span>{getRandomInt(200, 100)} results</span>
-          </div>
-        ),
-      };
-    });
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+function isMatched(searchString, sentence) {
+  const regex = new RegExp(searchString, "i");
+  return regex.test(sentence);
+}
+
+const searchResult = (query, data) =>
+  data?.map((_, idx) => {
+    const category = `${query}${idx}`;
+    return {
+      value: category,
+      label: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>
+            {isMatched(query, _.course.title) && (
+              <>
+                Found {query} on{" "}
+                <Link
+                  className="text-blue-600"
+                  to={`/dashboard/courses/${_.course._id}`}
+                >
+                  {_.course.title}
+                </Link>
+              </>
+            )}
+            {!isMatched(query, _.course.title) && <>Not matched</>}
+          </span>
+        </div>
+      ),
+    };
+  });
 const Search = () => {
+  const courses = useSelector((state) => state.getcourses).result;
   const [options, setOptions] = useState([]);
   const handleSearch = (value) => {
-    setOptions(value ? searchResult(value) : []);
+    setOptions(value ? searchResult(value, courses) : []);
   };
   const onSelect = (value) => {
     console.log("onSelect", value);
@@ -45,7 +52,7 @@ const Search = () => {
     <AutoComplete
       style={{
         width: "90%",
-        display:'block'
+        display: "block",
       }}
       options={options}
       onSelect={onSelect}
@@ -55,7 +62,7 @@ const Search = () => {
         size="large"
         placeholder="Search by title, date, topic"
         enterButton
-        className="search-btn ml-10"
+        className="search-btn ml-5"
       />
     </AutoComplete>
   );
