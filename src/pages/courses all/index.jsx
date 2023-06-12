@@ -3,8 +3,8 @@ import { Col, Row, Typography } from "antd";
 import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
-
 import AnimatedText from "../../components/AnimatedText";
+
 
 const { Title, Text } = Typography;
 
@@ -28,33 +28,47 @@ const CoursesAll = ({ setActive }) => {
           <Search />
           {/* <Text type="secondary">Search by title, date, etc.</Text> */}
         </Row>
-        
         <section>
-        <div className="flex flex-col lg:flex-row bg-#f9f9f9 mt-1">
-          <div className="flex-1 flex justify-center items-center lg:items-start">
-            <div className="max-w-lg mx-auto p-4">
-              <div className="bg-white rounded-lg p-4">
-                <div className="mb-8">
-                  <AnimatedText />
+          <div className="flex flex-col lg:flex-row bg-#f9f9f9 mt-1">
+            <div className="flex-1 flex justify-center items-center lg:items-start">
+              <div className="max-w-lg mx-auto p-4">
+                <div className="bg-white rounded-lg p-4">
+                  <div className="mb-8">
+                    <AnimatedText />
+                  </div>
+                  <p
+                    className="text-gray-600 text-xl"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    <span className="font-semibold text-2xl">Doubtfree</span>,
+                    the premier coding education platform for school students,
+                    offers specialized courses in various domains. Our
+                    comprehensive programs equip students with the necessary
+                    coding skills and knowledge to excel in these fields.
+                    <p className="text-black font-semibold mt-5">
+                      Join Doubtfree today and embark on a rewarding coding
+                      journey.
+                    </p>
+                  </p>
                 </div>
-                <p className="text-gray-600 text-xl" style={{ fontFamily: "Poppins" }}>
-                  <span className="font-semibold text-2xl">Doubtfree</span>, the premier coding education platform for school students, offers specialized courses in various domains. Our comprehensive programs equip students with the necessary coding skills and knowledge to excel in these fields.
-                  <p className="text-black font-semibold mt-5">Join Doubtfree today and embark on a rewarding coding journey.</p>
-                </p>
+              </div>
+            </div>
+            <div className="flex-1 mt-4 lg:mt-0 lg:flex justify-center items-center">
+              <div className="h-full">
+                <img
+                  className="w-[90%] h-[90%] ml-20 align-baseline"
+                  src={process.env.PUBLIC_URL + "/ezgif.com-optimize.gif"}
+                  alt="Learning"
+                />
               </div>
             </div>
           </div>
-          <div className="flex-1 mt-4 lg:mt-0 lg:flex justify-center items-center">
-            <div className="h-full">
-              <img className="w-[90%] h-[90%] ml-20 align-baseline" src={process.env.PUBLIC_URL + '/ezgif.com-optimize.gif'} alt="Learning" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-         <Title level={2} className="text-2xl mt-10 font-semibold text-center font-sans">
-            ALL COURSES
+        </section>
+        <Row>
+          <Title level={4} className="text-2xl font-semibold">
+            All
           </Title>
+        </Row>
        
         <Row gutter={[16, 16]}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
