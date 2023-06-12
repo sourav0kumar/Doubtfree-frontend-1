@@ -89,7 +89,6 @@ const CoursesAll = ({ setActive }) => {
             ))}
             </div>
         </Row>
-
         <Row>
           <Title level={4} className="text-2xl font-semibold">
             MACHINE LEARNING
