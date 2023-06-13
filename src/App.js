@@ -19,8 +19,10 @@ import { GetAllCourseService } from "./services/courses/get";
 import ResetPassword from "./pages/reset password";
 import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
-import Playground from "./pages/Playground";
+// import Playground from "./pages/Playground";
 import CoursesAll from "./pages/courses all";
+
+import Landing from "./components/compiler/compiler/Landing";
 
 
 function App() {
@@ -55,7 +57,7 @@ function App() {
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
-        <Route path="/playground" element={<Playground />} />{" "}
+        <Route path="/landing" element={<Landing/>} />{" "}
        
 
         <Route path="/courseContent" element={<CourseStructure />} />{" "}

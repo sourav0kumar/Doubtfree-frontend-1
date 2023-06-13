@@ -5,6 +5,7 @@ import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 import AnimatedText from "../../components/AnimatedText";
 
+
 const { Title, Text } = Typography;
 
 const CoursesAll = ({ setActive }) => {
@@ -12,7 +13,7 @@ const CoursesAll = ({ setActive }) => {
 
   return (
     <>
-      <div className="text-center mt-3 mb-2">
+      <div className="text-center mt-3 mb-2"> 
         <h1 className="text-4xl md:text-6xl font-bold">
           What would you like to&nbsp;
           <span className="text-4xl md:text-6xl font-bold text-blue-600">
@@ -23,9 +24,9 @@ const CoursesAll = ({ setActive }) => {
 
       <div style={{ width: "100%", padding: "20px" }}>
         <Row style={{ paddingBottom: "20px" }}>
-          <Title level={4}>Search Courses</Title>
+          <Title level={4} className="ml-10">Search Courses</Title>
           <Search />
-          <Text type="secondary">Search by title, date, etc.</Text>
+          {/* <Text type="secondary">Search by title, date, etc.</Text> */}
         </Row>
         <section>
           <div className="flex flex-col lg:flex-row bg-#f9f9f9 mt-1">
@@ -68,10 +69,12 @@ const CoursesAll = ({ setActive }) => {
             All
           </Title>
         </Row>
+       
         <Row gutter={[16, 16]}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {courses &&
             courses?.map((course, index) => (
-              <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
+              <Col key={index} >
                 <CourseCard
                   id={course.course._id}
                   title={course.course.title}
@@ -80,9 +83,11 @@ const CoursesAll = ({ setActive }) => {
                   price={course.course.fee}
                   imageUrl={course.bannerImageUrl}
                   setActive={setActive}
+                  user={course.course.user}
                 />
               </Col>
             ))}
+            </div>
         </Row>
         <Row>
           <Title level={4} className="text-2xl font-semibold">

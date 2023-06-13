@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 
 // import HomeContent from "../../components/HomeContent"
-
-import { TypeAnimation } from "react-type-animation";
 import { items, services_home } from "./constants";
+import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   const [textColor, setTextColor] = useState("black");
@@ -30,6 +29,21 @@ const Home = () => {
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
+      const items = [
+        "aqua",
+        "deeppink",
+        "darkkhaki",
+        "blue",
+        "green",
+        "purple",
+        "pink",
+        "brown",
+        "darkmagenta",
+        "darksalmon",
+        "dodgerblue",
+        "firebrick",
+        "darkviolet",
+      ];
       const randomColor = items[Math.floor(Math.random() * items.length)];
       setTextColor(randomColor);
     }, 1000); // Change color every 3 seconds
@@ -71,15 +85,15 @@ const Home = () => {
         <div className="home-right">
           <img
             src="/dizzyeducation-1@2x.png"
-            className="max-w-[50%] h-[60%] floating-image mr-4 mt-6"
+            className="md:max-w-[50%] md:h-[60%]   sm:max-w-[40%] sm:h-[50%]  max-w-[30%] h-[40%] floating-image  mr-4 mt-6"
           />
         </div>
       </div>
-      <div className="text-gray py-4 px-6 text-left container-home1">
+         <div className="text-gray py-4 px-6 text-left container-home1">
         <div className="text-lg font-bold mb-2">
           Discover the best coding course for your kids.
         </div>
-        <div className="text-base ml">Learn Coding from basics.</div>
+        <div className="text-base">Learn Coding from basics.</div>
         <div className="btn-div my-5">
           <Link
             to="/dashboard/courses"
@@ -99,7 +113,7 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="py-8 bg-gray-100 pb-16">
+      <section className="py-8 bg-gray-100 pb-16 mt-15 md:mt-10">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl text-center font-bold mb-14">
             WHY CHOOSE
@@ -132,6 +146,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <div className="mt-1">
         <Footer />
       </div>

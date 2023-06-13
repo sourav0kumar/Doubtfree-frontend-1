@@ -65,10 +65,10 @@ const Profile = () => {
               <div className="">
                 <Image width={110} src={profile_data.profileImage} />
               </div>
-              <div className="my-3">
+              <div className="my-2">
                 <h1 className="" style={{ fontSize: "1.3rem", color: "blue" }}>
                   {profile_data.result.name}
-                  <Tag color="#55acee" className="my-1">
+                  <Tag color="#55acee" className="my-1 ml-2">
                     {profile_data.result.isTeacher ? "Teacher" : "Student"}
                   </Tag>
                 </h1>

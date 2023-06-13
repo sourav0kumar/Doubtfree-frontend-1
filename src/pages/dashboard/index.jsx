@@ -56,7 +56,16 @@ const Dashboard = () => {
               className={active === "1" ? "active" : ""}
               onClick={() => setActive("1")}
             >
-              <UserOutlined style={{ marginRight: "5px" }} />
+
+             
+
+              <div className="flex flex-col items-center group relative">
+                <UserOutlined className="mb-1" />
+                <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                My Profile
+                </div>
+              </div>
+
               {!collapsed && "My Profile"}
             </Link>
             <Link
@@ -65,7 +74,16 @@ const Dashboard = () => {
               onClick={() => setActive("2")}
             >
               {" "}
-              <DesktopOutlined style={{ marginRight: "5px" }} />
+
+              <div className="flex flex-col items-center group relative">
+                <DesktopOutlined className="mb-1" />
+                <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                My Courses
+                </div>
+              </div>
+
+
+
               {!collapsed && "My Courses"}
             </Link>
             <Link
@@ -74,7 +92,14 @@ const Dashboard = () => {
               onClick={() => setActive("3")}
             >
               {" "}
-              <DesktopOutlined style={{ marginRight: "5px" }} />
+
+              <div className="flex flex-col items-center group relative">
+                <DesktopOutlined className="mb-1" />
+                <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  Playground
+                </div>
+              </div>
+            
               {!collapsed && "playground"}
             </Link>
             {getuser.result.isTeacher && (
@@ -84,19 +109,42 @@ const Dashboard = () => {
                 onClick={() => setActive("4")}
               >
                 {" "}
-                <FolderAddOutlined style={{ marginRight: "5px" }} />
+
+                
+                <div className="flex items-center group relative">
+                  <FolderAddOutlined className="mr-1" />
+                  <div className="flex items-center absolute left-full ml-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                      Add Course
+                  </div>
+                </div>
+
                 {!collapsed && "Add Course"}
               </Link>
             )}
             <Link to="/dashboard/profile">
               {" "}
-              <QuestionCircleOutlined style={{ marginRight: "5px" }} />
+
+              <div className="flex flex-col items-center group relative">
+                <QuestionCircleOutlined className="mb-1" />
+                <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                `{getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`
+                </div>
+              </div>
+
+              
               {!collapsed &&
                 `${getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`}
             </Link>
             <Link to="/">
               {" "}
-              <ArrowLeftOutlined style={{ marginRight: "5px" }} />
+
+              <div className="flex flex-col items-center group relative">
+                <ArrowLeftOutlined className="mb-1" />
+                <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                  Home
+                </div>
+              </div>
+
               {!collapsed && "Back to home"}
             </Link>
           </div>
