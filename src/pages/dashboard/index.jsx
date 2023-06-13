@@ -17,8 +17,12 @@ import AddCourse from "./addcourse";
 import { useSelector } from "react-redux";
 import { Typography } from "antd";
 import LearnCourse from "./course";
+
+// import Landing from "./components/compiler/compiler/Landing";
+
 const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
+
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -87,7 +91,7 @@ const Dashboard = () => {
               {!collapsed && "My Courses"}
             </Link>
             <Link
-              to="/dashboard/playground"
+              to="/landing"
               className={active === "3" ? "active" : ""}
               onClick={() => setActive("3")}
             >
