@@ -109,9 +109,6 @@ const Navbar = () => {
                     DoubtSupport
                   </Link>
 
-
-
-
                   <Link
                     to={"/About"}
                     class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -142,7 +139,7 @@ const Navbar = () => {
                 {isLoggedIn && (
                   <>
                     <Link
-                      to="/landing"
+                      to="/dashboard/playground"
                       class="text-gray-300 bg-blue-600 hover:bg-blue-500 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-2"
                       aria-current="page"
                       style={{

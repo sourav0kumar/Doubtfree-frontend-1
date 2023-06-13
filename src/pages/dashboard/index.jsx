@@ -9,14 +9,14 @@ import {
 import { Breadcrumb, Image, Layout, theme } from "antd";
 import { useState } from "react";
 import Profile from "./profile";
-import Playground from "../Playground";
-
 import Courses from "./courses";
 import { Link, Route, Routes } from "react-router-dom";
 import AddCourse from "./addcourse";
 import { useSelector } from "react-redux";
 import { Typography } from "antd";
 import LearnCourse from "./course";
+import Landing from "../../components/compiler/compiler/Landing";
+
 const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 
@@ -56,13 +56,10 @@ const Dashboard = () => {
               className={active === "1" ? "active" : ""}
               onClick={() => setActive("1")}
             >
-
-             
-
               <div className="flex flex-col items-center group relative">
                 <UserOutlined className="mb-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                My Profile
+                  My Profile
                 </div>
               </div>
 
@@ -74,16 +71,12 @@ const Dashboard = () => {
               onClick={() => setActive("2")}
             >
               {" "}
-
               <div className="flex flex-col items-center group relative">
                 <DesktopOutlined className="mb-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                My Courses
+                  My Courses
                 </div>
               </div>
-
-
-
               {!collapsed && "My Courses"}
             </Link>
             <Link
@@ -92,14 +85,12 @@ const Dashboard = () => {
               onClick={() => setActive("3")}
             >
               {" "}
-
               <div className="flex flex-col items-center group relative">
                 <DesktopOutlined className="mb-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   Playground
                 </div>
               </div>
-            
               {!collapsed && "playground"}
             </Link>
             {getuser.result.isTeacher && (
@@ -109,42 +100,34 @@ const Dashboard = () => {
                 onClick={() => setActive("4")}
               >
                 {" "}
-
-                
                 <div className="flex items-center group relative">
                   <FolderAddOutlined className="mr-1" />
                   <div className="flex items-center absolute left-full ml-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                      Add Course
+                    Add Course
                   </div>
                 </div>
-
                 {!collapsed && "Add Course"}
               </Link>
             )}
             <Link to="/dashboard/profile">
               {" "}
-
               <div className="flex flex-col items-center group relative">
                 <QuestionCircleOutlined className="mb-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                `{getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`
+                  `{getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`
                 </div>
               </div>
-
-              
               {!collapsed &&
                 `${getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`}
             </Link>
             <Link to="/">
               {" "}
-
               <div className="flex flex-col items-center group relative">
                 <ArrowLeftOutlined className="mb-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   Home
                 </div>
               </div>
-
               {!collapsed && "Back to home"}
             </Link>
           </div>
@@ -185,7 +168,7 @@ const Dashboard = () => {
                   element={<Courses setActive={setActive} />}
                 />
                 <Route path="/courses/:id" element={<LearnCourse />} />
-                <Route path="/playground" element={<Playground />} />
+                <Route path="/playground" element={<Landing />} />
               </Routes>
             </div>
           </Content>

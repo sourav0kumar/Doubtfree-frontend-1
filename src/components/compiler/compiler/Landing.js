@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { defineTheme } from "./lib/defineTheme";
 import useKeyPress from "./hooks/useKeyPress";
-import Footer from "./Footer";
 import OutputWindow from "./OutputWindow";
 import CustomInput from "./CustomInput";
 import OutputDetails from "./OutputDetails";
@@ -216,8 +215,6 @@ const Landing = () => {
         pauseOnHover
       />
 
-
-      <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
       <div className="flex flex-row md:flex-col">
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={onSelectChange} />
@@ -257,7 +254,6 @@ const Landing = () => {
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -8,7 +8,6 @@ import LoginDemo from "./pages/login";
 import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import About from "./pages/About";
-import Courses from "./pages/dashboard/courses";
 import Contact from "./pages/Contact";
 import DoubtSupport from "./pages/DoubtSupport";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,11 +18,7 @@ import { GetAllCourseService } from "./services/courses/get";
 import ResetPassword from "./pages/reset password";
 import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
-// import Playground from "./pages/Playground";
 import CoursesAll from "./pages/courses all";
-
-import Landing from "./components/compiler/compiler/Landing";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -50,16 +45,12 @@ function App() {
             <Route path="/forget-password" element={<ForgetPassword />} />{" "}
             <Route path="/change-password" element={<ChangePassword />} />{" "}
             <Route path="/register" element={<Register />} />{" "}
-            <Route path="/register" element={<Register />} />{" "}
           </>
         )}{" "}
         <Route path="/courses" element={<CoursesAll />} />{" "}
         <Route path="/about" element={<About />} />{" "}
         <Route path="/contact" element={<Contact />} />{" "}
         <Route path="/doubtSupport" element={<DoubtSupport />} />{" "}
-        <Route path="/landing" element={<Landing/>} />{" "}
-       
-
         <Route path="/courseContent" element={<CourseStructure />} />{" "}
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
