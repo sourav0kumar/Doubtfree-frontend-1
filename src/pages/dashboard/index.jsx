@@ -80,7 +80,7 @@ const Dashboard = () => {
               {!collapsed && "My Courses"}
             </Link>
             <Link
-              to="/dashboard/landing"
+              to="/dashboard/playground"
               className={active === "3" ? "active" : ""}
               onClick={() => setActive("3")}
             >

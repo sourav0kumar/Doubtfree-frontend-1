@@ -195,7 +195,6 @@ const Landing = () => {
     showSuccessToast("Code copied to clipboard!");
   };
 
-
   const showErrorToast = (msg, timer) => {
     toast.error(msg || `Something went wrong! Please try again.`, {
       position: "top-right",
@@ -208,11 +207,8 @@ const Landing = () => {
     });
   };
 
-  
-
   return (
     <>
-    
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -225,18 +221,8 @@ const Landing = () => {
         pauseOnHover
       />
 
-<<<<<<< HEAD
       <div className="flex flex-row md:flex-col">
         <div className="px-4 py-2">
-=======
-
-      <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
-      <div className="flex flex-row md:flex-col font-semibold font-sans mt-4">
-        <label htmlFor="language" className="block mb-2 mt-3 ml-5 font-sans">
-          Language:
-        </label>
-        <div className="px-2 py-2">
->>>>>>> 11512430436e4e797696988c448cdba2f91100f3
           <LanguagesDropdown onSelectChange={onSelectChange} />
         </div>
         <label htmlFor="language" className="block mb-2 mt-3 ml-10 font-sans">
@@ -246,11 +232,13 @@ const Landing = () => {
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
         <div className="ml-10 flex flex-row">
-        
-          <img src="https://s3-ap-southeast-1.amazonaws.com/codestudio.codingninjas.com/codestudio/assets/icons/copy-code.svg"
-              className={classnames(" text-white font-bold py-2 px-4 rounded mr-2 mt-1"
-              ,!code ? "opacity-80" : "")}
-              onClick={handleCopyToClipboard}
+          <img
+            src="https://s3-ap-southeast-1.amazonaws.com/codestudio.codingninjas.com/codestudio/assets/icons/copy-code.svg"
+            className={classnames(
+              " text-white font-bold py-2 px-4 rounded mr-2 mt-1",
+              !code ? "opacity-80" : ""
+            )}
+            onClick={handleCopyToClipboard}
           />
         </div>
       </div>
@@ -265,9 +253,8 @@ const Landing = () => {
         </div>
 
         <div className="flex flex-shrink-0 w-[60%] mt-0 gap-6 md:gap-1  md:w-[30%] flex-col">
-          
           <OutputWindow outputDetails={outputDetails} />
-          
+
           <div className="flex flex-col items-end mt-2">
             <CustomInput
               customInput={customInput}
@@ -283,19 +270,18 @@ const Landing = () => {
             >
               {processing ? "Processing..." : "Compile and Execute"}
             </button> */}
-            
+
             <div className="mt-2">
-            <button
-              className={classnames("bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2 mt-3"
-              ,!code ? "opacity-50" : "")}
-              onClick={handleCompile}
-            >
-              {processing ? "Processing..." : "Compile and Execute"}
-            </button>
+              <button
+                className={classnames(
+                  "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2 mt-3",
+                  !code ? "opacity-50" : ""
+                )}
+                onClick={handleCompile}
+              >
+                {processing ? "Processing..." : "Compile and Execute"}
+              </button>
             </div>
-            
-
-
           </div>
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>
