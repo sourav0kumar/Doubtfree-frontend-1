@@ -17,8 +17,8 @@ import AddCourse from "./addcourse";
 import { useSelector } from "react-redux";
 import { Typography } from "antd";
 import LearnCourse from "./course";
+import Landing from "../../components/compiler/compiler/Landing";
 
-// import Landing from "./components/compiler/compiler/Landing";
 
 const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -91,7 +91,7 @@ const Dashboard = () => {
               {!collapsed && "My Courses"}
             </Link>
             <Link
-              to="/landing"
+              to="/dashboard/landing"
               className={active === "3" ? "active" : ""}
               onClick={() => setActive("3")}
             >
@@ -169,7 +169,7 @@ const Dashboard = () => {
               <Breadcrumb.Item>
                 {active === "1" && "Profile"}
                 {active === "2" && "Courses"}
-                {active === "3" && "About"}
+                {active === "3" && "Playground"}
                 {active === "4" && "Add Course"}
                 {active === "-1" && "Courses / Learn"}
               </Breadcrumb.Item>
@@ -189,7 +189,7 @@ const Dashboard = () => {
                   element={<Courses setActive={setActive} />}
                 />
                 <Route path="/courses/:id" element={<LearnCourse />} />
-                <Route path="/playground" element={<Playground />} />
+                <Route path="/landing" element={<Landing />} />
               </Routes>
             </div>
           </Content>
