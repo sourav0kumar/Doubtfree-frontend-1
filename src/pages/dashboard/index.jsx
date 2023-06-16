@@ -148,7 +148,7 @@ const Dashboard = () => {
               <Breadcrumb.Item>
                 {active === "1" && "Profile"}
                 {active === "2" && "Courses"}
-                {active === "3" && "About"}
+                {active === "3" && "Playground"}
                 {active === "4" && "Add Course"}
                 {active === "-1" && "Courses / Learn"}
               </Breadcrumb.Item>

@@ -50,7 +50,7 @@ const Landing = () => {
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
-  const [theme, setTheme] = useState("cobalt");
+  const [theme, setTheme] = useState("blackboard");
   const [language, setLanguage] = useState(languageOptions[0]);
 
   const enterPress = useKeyPress("Enter");
@@ -189,6 +189,12 @@ const Landing = () => {
       progress: undefined,
     });
   };
+
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(code);
+    showSuccessToast("Code copied to clipboard!");
+  };
+
   const showErrorToast = (msg, timer) => {
     toast.error(msg || `Something went wrong! Please try again.`, {
       position: "top-right",
@@ -219,12 +225,25 @@ const Landing = () => {
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={onSelectChange} />
         </div>
-        <div className="px-4 py-2">
+        <label htmlFor="language" className="block mb-2 mt-3 ml-10 font-sans">
+          Theme:
+        </label>
+        <div className="px-2 py-2">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
+        <div className="ml-10 flex flex-row">
+          <img
+            src="https://s3-ap-southeast-1.amazonaws.com/codestudio.codingninjas.com/codestudio/assets/icons/copy-code.svg"
+            className={classnames(
+              " text-white font-bold py-2 px-4 rounded mr-2 mt-1",
+              !code ? "opacity-80" : ""
+            )}
+            onClick={handleCopyToClipboard}
+          />
+        </div>
       </div>
-      <div className="flex flex-row space-x-4 items-start px-4 py-4">
-        <div className="flex flex-col w-full h-full justify-start items-end">
+      <div className="flex flex-col md:flex-row space-x-4 md:items-start  items-center md:px-4 py-4">
+        <div className="flex flex-col w-full h-full justify-start items-end ">
           <CodeEditorWindow
             code={code}
             onChange={onChange}
@@ -233,14 +252,15 @@ const Landing = () => {
           />
         </div>
 
-        <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
+        <div className="flex flex-shrink-0 w-[60%] mt-0 gap-6 md:gap-1  md:w-[30%] flex-col">
           <OutputWindow outputDetails={outputDetails} />
-          <div className="flex flex-col items-end">
+
+          <div className="flex flex-col items-end mt-2">
             <CustomInput
               customInput={customInput}
               setCustomInput={setCustomInput}
             />
-            <button
+            {/* <button
               onClick={handleCompile}
               disabled={!code}
               className={classnames(
@@ -249,7 +269,19 @@ const Landing = () => {
               )}
             >
               {processing ? "Processing..." : "Compile and Execute"}
-            </button>
+            </button> */}
+
+            <div className="mt-2">
+              <button
+                className={classnames(
+                  "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2 mt-3",
+                  !code ? "opacity-50" : ""
+                )}
+                onClick={handleCompile}
+              >
+                {processing ? "Processing..." : "Compile and Execute"}
+              </button>
+            </div>
           </div>
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>

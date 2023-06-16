@@ -1,54 +1,47 @@
 export const customStyles = {
-  control: (styles) => ({
-    ...styles,
+  control: (provided, state) => ({
+    ...provided,
     width: "100%",
     maxWidth: "14rem",
     minWidth: "12rem",
-    borderRadius: "5px",
+    borderRadius: "8px",
     color: "#000",
     fontSize: "0.8rem",
     lineHeight: "1.75rem",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#f5f5f7",
     cursor: "pointer",
-    border: "2px solid #000000",
-    boxShadow: "5px 5px 0px 0px rgba(0,0,0);",
+    boxShadow: state.isFocused ? "0 0 0 3px rgba(0, 0, 0, 0.1)" : "none",
+    borderColor: state.isFocused ? "#EFDECD" : "#d0d0d7",
     ":hover": {
-      border: "2px solid #000000",
-      boxShadow: "none",
+      borderColor: state.isFocused ? "#000" : "#d0d0d7",
     },
   }),
-  option: (styles) => {
-    return {
-      ...styles,
-      color: "#000",
-      fontSize: "0.8rem",
-      lineHeight: "1.75rem",
-      width: "100%",
-      background: "#fff",
-      ":hover": {
-        backgroundColor: "rgb(243 244 246)",
-        color: "#000",
-        cursor: "pointer",
-      },
-    };
-  },
-  menu: (styles) => {
-    return {
-      ...styles,
-      backgroundColor: "#fff",
-      maxWidth: "14rem",
-      border: "2px solid #000000",
-      borderRadius: "5px",
-      boxShadow: "5px 5px 0px 0px rgba(0,0,0);",
-    };
-  },
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? "#fff" : "#000",
+    fontSize: "0.8rem",
+    lineHeight: "1.75rem",
+    width: "100%",
+    background: state.isSelected ? "#000" : "#fff",
+    ":hover": {
+      backgroundColor: state.isSelected ? "#000" : "#f3f4f6",
+      color: state.isSelected ? "#fff" : "#000",
+      cursor: "pointer",
+    },
+  }),
+  menu: (provided) => ({
+    ...provided,
+    backgroundColor: "#fff",
+    maxWidth: "14rem",
+    border: "1px solid #d0d0d7",
+    borderRadius: "8px",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+  }),
 
-  placeholder: (defaultStyles) => {
-    return {
-      ...defaultStyles,
-      color: "#000",
-      fontSize: "0.8rem",
-      lineHeight: "1.75rem",
-    };
-  },
+  placeholder: (provided) => ({
+    ...provided,
+    color: "#808080",
+    fontSize: "0.8rem",
+    lineHeight: "1.75rem",
+  }),
 };
