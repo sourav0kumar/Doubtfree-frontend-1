@@ -6,6 +6,12 @@ import Footer from "../../components/Footer";
 // import HomeContent from "../../components/HomeContent"
 import { items, services_home } from "./constants";
 import { TypeAnimation } from "react-type-animation";
+import {
+  BranchesOutlined,
+  CodeFilled,
+  GithubFilled,
+  UserOutlined,
+} from "@ant-design/icons";
 
 const Home = () => {
   const [textColor, setTextColor] = useState("black");
@@ -55,6 +61,61 @@ const Home = () => {
 
   return (
     <>
+      <section className="bg-blue-50 min-h-100" style={{ minHeight: "100vh" }}>
+        <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
+          <div className="mr-auto place-self-center lg:col-span-7">
+            <h1 className="text-slate-900 max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl ">
+              Code, Create,
+              <div className="animation-container" style={{ color: textColor }}>
+                <TypeAnimation
+                  sequence={[
+                    "Conquer!",
+                    900,
+                    "Conquer!",
+                    900,
+                    "Conquer!",
+                    900,
+                    "C",
+                    900,
+                  ]}
+                  repeat={Infinity}
+                  cursor={false}
+                />
+              </div>
+            </h1>
+            <h4 className="text-gray-700 mb-2">
+              Join the Coding Revolution at DoubtFree
+            </h4>
+            <h5 className="mb-2">
+              <strong className="text-green-700">
+                Discover the best coding course for your kids.
+              </strong>
+            </h5>
+            <p className="mb-2">Learn Coding from basics.</p>
+            <p className="max-w-2xl mb-6  text-gray-600 lg:mb-8 md:text-lg lg:text-xl "></p>
+            <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+              <Link
+                to="/"
+                className="bg-gray-800 inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-700 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              >
+                <CodeFilled className="mr-2" />
+                Playground
+              </Link>
+              <Link
+                to="/"
+                className="bg-gray-800 inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-700 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              >
+                <UserOutlined className="mr-2" />
+                Dashboard
+              </Link>
+            </div>
+          </div>
+          <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            <img src="/dizzyeducation-1@2x.png" alt="hero image" />
+          </div>
+        </div>
+      </section>
+
       <div className="container-home">
         <div className="home-left">
           <div className="text-4xl md:text-6xl font-bold">
@@ -89,7 +150,7 @@ const Home = () => {
           />
         </div>
       </div>
-         <div className="text-gray py-4 px-6 text-left container-home1">
+      <div className="text-gray py-4 px-6 text-left container-home1">
         <div className="text-lg font-bold mb-2">
           Discover the best coding course for your kids.
         </div>
