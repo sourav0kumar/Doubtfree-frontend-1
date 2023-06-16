@@ -115,7 +115,7 @@ const CodeEditor = () => {
 
       <div className="flex justify-end mb-4">
         <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2 mt-3"
           onClick={handleRunCode}
         >
           Run
