@@ -129,9 +129,9 @@ const Home = () => {
 
       <section className="py-8 bg-gray-100 pb-16 mt-15 md:mt-10">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl text-center font-bold mb-14">
-            WHY CHOOSE
-            <span className="text-3xl  font-bold text-blue-600"> US?</span>
+         <h2 className="mb-6 mt-4 text-5xl font-extrabold tracking-tight text-center text-black-900 lg:mb-8 lg:text-5xl">
+          WHY CHOOSE
+            <span className="text-5xl  font-bold text-blue-600"> US?</span>
           </h2>
           <div className="relative h-2 mb-6 overflow-hidden m-4">
             <div
