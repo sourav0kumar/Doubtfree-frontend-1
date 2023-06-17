@@ -5,6 +5,7 @@ import {
   ArrowLeftOutlined,
   FolderAddOutlined,
   QuestionCircleOutlined,
+  CodeFilled,
 } from "@ant-design/icons";
 import { Breadcrumb, Image, Layout, theme } from "antd";
 import { useState } from "react";
@@ -21,7 +22,7 @@ const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 
 const Dashboard = () => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   const getuser = useSelector((state) => state.getuser).result;
   const [active, setActive] = useState("1");
   const {
@@ -51,13 +52,17 @@ const Dashboard = () => {
                 fallback="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
               />
             </div>
+            <strong className="mt-3 text-blue-400">
+              {getuser.result.name}
+            </strong>
+            <small className="mb-1 text-gray-400">{getuser.result.email}</small>
             <Link
               to="/dashboard/profile"
               className={active === "1" ? "active" : ""}
               onClick={() => setActive("1")}
             >
               <div className="flex flex-col items-center group relative">
-                <UserOutlined className="mb-1" />
+                <UserOutlined className="mr-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   My Profile
                 </div>
@@ -72,7 +77,7 @@ const Dashboard = () => {
             >
               {" "}
               <div className="flex flex-col items-center group relative">
-                <DesktopOutlined className="mb-1" />
+                <DesktopOutlined className="mr-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   My Courses
                 </div>
@@ -86,7 +91,7 @@ const Dashboard = () => {
             >
               {" "}
               <div className="flex flex-col items-center group relative">
-                <DesktopOutlined className="mb-1" />
+                <CodeFilled className="mr-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   Playground
                 </div>
@@ -112,7 +117,7 @@ const Dashboard = () => {
             <Link to="/dashboard/profile">
               {" "}
               <div className="flex flex-col items-center group relative">
-                <QuestionCircleOutlined className="mb-1" />
+                <QuestionCircleOutlined className="mr-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   `{getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`
                 </div>
@@ -123,7 +128,7 @@ const Dashboard = () => {
             <Link to="/">
               {" "}
               <div className="flex flex-col items-center group relative">
-                <ArrowLeftOutlined className="mb-1" />
+                <ArrowLeftOutlined className="mr-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                   Home
                 </div>

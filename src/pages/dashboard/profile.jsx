@@ -62,8 +62,12 @@ const Profile = () => {
         <div className="row d-flex justify-content-center">
           <div className="col-md-12">
             <div className="card p-3 py-4">
-              <div className="">
-                <Image width={110} src={profile_data.profileImage} />
+              <div>
+                <Image
+                  className="rounded-md overflow-hidden"
+                  width={110}
+                  src={profile_data.profileImage}
+                />
               </div>
               <div className="my-2">
                 <h1 className="" style={{ fontSize: "1.3rem", color: "blue" }}>
@@ -123,12 +127,13 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <Row>
+        {/* <Row>
           <Title level={4}>Enrolled Courses</Title>
-        </Row>
-        <div className="container">
+        </Row> */}
+
+        {/* <div className="container">
           <CoursesTable />
-        </div>
+        </div> */}
         <Modal
           title="Edit Profile"
           open={open}

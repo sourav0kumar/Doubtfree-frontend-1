@@ -5,7 +5,6 @@ import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 import AnimatedText from "../../components/AnimatedText";
 
-
 const { Title, Text } = Typography;
 
 const CoursesAll = ({ setActive }) => {
@@ -13,7 +12,7 @@ const CoursesAll = ({ setActive }) => {
 
   return (
     <>
-      <div className="text-center mt-3 mb-2"> 
+      <div className="text-center mt-3 mb-2">
         <h1 className="text-4xl md:text-6xl font-bold">
           What would you like to&nbsp;
           <span className="text-4xl md:text-6xl font-bold text-blue-600">
@@ -21,18 +20,12 @@ const CoursesAll = ({ setActive }) => {
           </span>
         </h1>
       </div>
-
       <div style={{ width: "100%", padding: "20px" }}>
-        <Row style={{ paddingBottom: "20px" }}>
-          <Title level={4} className="ml-10">Search Courses</Title>
-          <Search />
-          {/* <Text type="secondary">Search by title, date, etc.</Text> */}
-        </Row>
         <section>
           <div className="flex flex-col lg:flex-row bg-#f9f9f9 mt-1">
-            <div className="flex-1 flex justify-center items-center lg:items-start">
-              <div className="max-w-lg mx-auto p-4">
-                <div className="bg-white rounded-lg p-4">
+            <div className="my-10 flex-1 flex justify-between items-center lg:items-start">
+              <div className="max-w-lg mx-auto my-10">
+                <div className="bg-white rounded-lg">
                   <div className="mb-8">
                     <AnimatedText />
                   </div>
@@ -53,30 +46,32 @@ const CoursesAll = ({ setActive }) => {
                 </div>
               </div>
             </div>
-            <div className="flex-1 mt-4 lg:mt-0 lg:flex justify-center items-center">
-              <div className="h-full">
-                <img
-                  className="w-[90%] h-[90%] ml-20 align-baseline"
-                  src={process.env.PUBLIC_URL + "/ezgif.com-optimize.gif"}
-                  alt="Learning"
-                />
-              </div>
+            <div className="flex-1 mt-3 lg:mt-0 lg:flex justify-center items-center">
+              <img
+                className="w-[60%] h-auto ml-20 align-baseline"
+                src={require("./learn_course.jpg")}
+                alt="Learning"
+              />
             </div>
           </div>
         </section>
-
-          <h3 level={4} className="text-2xl font-semibold text-center">
-              <div className="text-3xl md:text-5xl font-bold  text-black-600">
-                ALL COURSES
-              </div>
-          </h3>
-
-       
-        <Row gutter={[16, 16]}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        <h3 level={4} className="text-2xl font-semibold text-center mb-3">
+          <div className="text-3xl md:text-4xl font-bold  text-black-600">
+            ALL COURSES
+          </div>
+        </h3>
+        <div className="flex justify-center w-100 align-middle">
+          <div style={{ paddingBottom: "20px" }} className="w-[80%]">
+            <Title level={4} className="ml-5">
+              Search Courses
+            </Title>
+            <Search />
+          </div>
+        </div>
+        <div className="flex justify-content-center align-items-top w-full flex-wrap">
           {courses &&
             courses?.map((course, index) => (
-              <Col key={index} >
+              <Col key={index}>
                 <CourseCard
                   id={course.course._id}
                   title={course.course.title}
@@ -89,21 +84,7 @@ const CoursesAll = ({ setActive }) => {
                 />
               </Col>
             ))}
-            </div>
-        </Row>
-        <Row>
-          <Title level={4} className="text-2xl font-semibold">
-            MACHINE LEARNING
-          </Title>
-        </Row>
-        <Row gutter={[16, 16]}>{/* ML Courses */}</Row>
-        <Row>
-          <Title level={4} className="text-2xl font-semibold">
-            DATA SCIENCE
-          </Title>
-        </Row>
-        <Row gutter={[16, 16]}>{/* Data Science */}</Row>
-        {/* Add more sections or categories as needed */}
+        </div>
       </div>
     </>
   );
