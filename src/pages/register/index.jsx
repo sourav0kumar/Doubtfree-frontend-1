@@ -15,7 +15,8 @@ import { useState } from "react";
 import "./style.css";
 import { RegisterUserService } from "../../services/auth/register";
 import { useDispatch } from "react-redux";
-import { UploadOutlined, UserOutlined } from "@ant-design/icons";
+import { UploadOutlined, UserOutlined,CloseOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -55,6 +56,12 @@ const Register = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [isUploaded, setUploaded] = useState(false);
+
+  const navigate=useNavigate();
+
+  const handleCancel = () =>{
+    navigate("/");
+  };
 
   const onFinish = async (values) => {
     const key = "updatable";
@@ -122,9 +129,14 @@ const Register = () => {
         scrollToFirstError
         noValidate
       >
-        <span className="form-head">
-          <h4>Register</h4>
-        </span>
+        <div className="form-head flex justify-center items-center">
+  <h4 className="text-center">Register</h4>
+  <button type="button" className="cancel-button ml-auto" onClick={handleCancel}>
+    <CloseOutlined />
+  </button>
+</div>
+
+
         <span className="form-head">
           {image && (
             <Avatar size={100}>

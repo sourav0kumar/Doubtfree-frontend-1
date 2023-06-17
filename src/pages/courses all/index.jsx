@@ -64,11 +64,13 @@ const CoursesAll = ({ setActive }) => {
             </div>
           </div>
         </section>
-        <Row>
-          <Title level={4} className="text-2xl font-semibold">
-            All
-          </Title>
-        </Row>
+
+          <h3 level={4} className="text-2xl font-semibold text-center">
+              <div className="text-3xl md:text-5xl font-bold  text-black-600">
+                ALL COURSES
+              </div>
+          </h3>
+
        
         <Row gutter={[16, 16]}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
