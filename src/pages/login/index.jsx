@@ -1,6 +1,7 @@
 import React from "react";
-import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { LoginService } from "../../services/auth/login";
 import { useDispatch } from "react-redux";
@@ -9,9 +10,9 @@ import { Link } from "react-router-dom";
 const LoginDemo = () => {
   const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    // console.log(values);
     const key = "updatable";
     messageApi.open({
       key,
@@ -25,6 +26,12 @@ const LoginDemo = () => {
       content: res,
     });
   };
+
+  const handleCancel = () => {
+    navigate("/"); // Navigates to the homepage ("/")
+  };
+
+
   return (
     <>
       {contextHolder}
@@ -38,9 +45,12 @@ const LoginDemo = () => {
           onFinish={onFinish}
           noValidate
         >
-          <span className="form-head">
-            <h4>Login</h4>
-          </span>
+          <div className="form-head flex items-center">
+            <h4 className="text-center">Login</h4>
+            <button type="button" className="cancel-button ml-auto" onClick={handleCancel}>
+              <CloseOutlined />
+            </button>
+          </div>
           <Form.Item
             name="email"
             rules={[
