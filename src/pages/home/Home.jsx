@@ -69,62 +69,68 @@ const Home = () => {
 
   return (
     <>
-      <div className="container-home">
-        <div className="home-left">
-          <div className="text-4xl md:text-6xl font-bold">
-            Code, Create,
-            <div className="animation-container" style={{ color: textColor }}>
-              <TypeAnimation
-                sequence={[
-                  "Conquer!",
-                  900,
-                  "Conquer!",
-                  900,
-                  "Conquer!",
-                  900,
-                  "C",
-                  900,
-                ]}
-                repeat={Infinity}
-                cursor={false}
+     <section className="bg-white dark:bg-gray-900">
+      <div className="grid max-w-screen-xl px-4 pt-10 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
+        <div className="mr-auto place-self-center lg:col-span-7">
+          <div className="max-w-4xl mb-4 text-6xl font-extrabold leading-none tracking-tight md:text-6xl xl:text-5xl ">
+              Code, Create,
+                <div className="animation-container" style={{ color: textColor }}>
+                <TypeAnimation
+                  sequence={[
+                    "Conquer!",
+                    900,
+                    "Conquer!",
+                    900,
+                    "Conquer!",
+                    900,
+                    "C",
+                    900,
+                  ]}
+                  repeat={Infinity}
+                  cursor={false}
+                />
+              </div>
+           </div>
+          <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            <div className="text-xl font-poppins inline-block  md:text-3xl mt-4 font-semibold text-green-800">
+              Join the Coding Revolution at DoubtFree
+            </div>
+            <div className="text-lg font-bold mb-2 mt-4">
+              Discover the best coding course for your kids.
+            </div>
+            <div className="text-base">
+              Learn Coding from basics.
+            </div>
+          </p>
+          <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+
+            <Link
+              to="/dashboard/courses"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-lg"
+            >
+              Explore
+            </Link>
+
+            <Link
+              to="https://doubtfree.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
+            >
+              Learn More
+            </Link>
+              </div>
+            </div>
+            <div className="relative w-full md:h-auto lg:col-span-5">
+              <img
+                src="/dizzyeducation-1@2x.png"
+                className="md:max-w-full md:h-[90%] sm:max-w-full sm:h-[80%] w-full sm:w-auto md:w-auto floating-image mr-2 mt-0"
               />
             </div>
+
           </div>
 
-          <div className="text-xl inline-block  md:text-3xl mt-4 font-semibold text-green-800 animation-text">
-            Join the Coding Revolution at DoubtFree
-          </div>
-        </div>
-        <div className="home-right">
-          <img
-            src="/dizzyeducation-1@2x.png"
-            className="md:max-w-[50%] md:h-[60%]   sm:max-w-[40%] sm:h-[50%]  max-w-[30%] h-[40%] floating-image  mr-4 mt-6"
-          />
-        </div>
-      </div>
-      <div className="text-gray py-4 px-6 text-left container-home1">
-        <div className="text-lg font-bold mb-2">
-          Discover the best coding course for your kids.
-        </div>
-        <div className="text-base">Learn Coding from basics.</div>
-        <div className="btn-div my-5">
-          <Link
-            to="/dashboard/courses"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-lg"
-          >
-            Explore
-          </Link>
-
-          <Link
-            to="https://doubtfree.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg text-lg mx-3"
-          >
-            Learn More
-          </Link>
-        </div>
-      </div>
+      </section>
 
       <section className="py-8 bg-gray-100 pb-16 mt-15 md:mt-10">
         <div className="container mx-auto px-4">
