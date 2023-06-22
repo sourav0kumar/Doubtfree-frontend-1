@@ -19,6 +19,7 @@ import ResetPassword from "./pages/reset password";
 import Footer from "./components/Footer";
 import CourseStructure from "./components/CourseStructure";
 import CoursesAll from "./pages/courses all";
+import Landing from "./components/compiler/compiler/Landing"
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
         <Route path="/courseContent" element={<CourseStructure />} />{" "}
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
+        <Route path="/landing" element={<Landing/>}/> 
       </Routes>
     </>
   );
