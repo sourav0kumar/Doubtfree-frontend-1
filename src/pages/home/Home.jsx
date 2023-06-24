@@ -142,7 +142,7 @@ const Home = () => {
           <div className="relative w-full md:h-auto lg:col-span-5">
             <img
               src="/dizzyeducation-1@2x.png"
-              className="md:max-w-full md:h-auto sm:max-w-full sm:h-auto w-full sm:w-auto md:w-auto mr-2 mt-5"
+              className="md:max-w-full md:h-auto sm:max-w-full sm:h-auto w-full floating-image sm:w-auto md:w-auto mr-2 mt-5"
             />
           </div>
         </div>

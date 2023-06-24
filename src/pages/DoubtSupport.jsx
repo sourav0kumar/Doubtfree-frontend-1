@@ -27,20 +27,22 @@ const DoubtSupport = () => {
       </div>
     
 
-      <section className="mt-4 "> <div className="z-0"><Grid/></div>
-        <div className="z-23"><QueryBar/></div>
-        <div className="mt-2  z-0"><GridLower/></div>
-        </section>
+      <section className="mt-2"> 
+        <div className="z-0"><Grid/></div>
+        <div className="z-23 mt-2"><QueryBar/></div>
+        <div className="mt-4 z-0"><GridLower/></div>
+      </section>
 
-
-      <header className="bg-blue-600 py-6 mt-0">
-        <div className="container mx-auto px-4">
-          <h1 className="text-white text-center text-4xl font-bold">STILL HAVING DOUBTS?</h1>
-        </div>
-      </header>
+    
+      
 
       <section className="mt-12">
-            <h2 className="text-4xl font-bold mb-4 text-center">Connect with Our Mentors</h2>
+          <header className="bg-blue-600 py-6 mt-4">
+            <div className="container mx-auto px-4">
+              <h1 className="text-white text-center text-4xl font-bold">STILL HAVING DOUBTS?</h1>
+            </div>
+          </header>
+            <h2 className="text-4xl font-bold mb-4 text-center mt-4">Connect with Our Mentors</h2>
 
 
             <div className="flex justify-center gap-10">
