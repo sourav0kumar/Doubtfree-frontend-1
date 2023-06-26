@@ -33,7 +33,7 @@ const Navbar = () => {
                 aria-expanded="false"
                 onClick={toggleMenu}
               >
-                <span class="sr-only">Open main menu</span>
+                {/* <span class="sr-only">Open main menu</span> */}
                 <svg
                   class="block h-6 w-6"
                   fill="none"

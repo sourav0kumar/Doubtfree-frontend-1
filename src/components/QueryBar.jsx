@@ -27,7 +27,9 @@ const SearchBar = () => {
 
   return (
     <div>
-         <h2 className="text-4xl font-bold mb-4 text-center mt-2">Ace With Verified Answers</h2>
+         <h2 className="mb-6 mt-4 text-5xl font-bold tracking-tight text-center text-black-900 lg:mb-8 lg:text-5xl">
+            ACE WITH VERIFIED ANSWERS
+          </h2>
     
     <div className="flex items-center justify-center mt-2">
       <div className="w-4/6 rounded-full overflow-hidden bg-white-600 shadow-md">
