@@ -21,6 +21,9 @@ import CourseStructure from "./components/CourseStructure";
 import CoursesAll from "./pages/courses all";
 import Landing from "./components/compiler/compiler/Landing"
 
+import QnA from "./pages/QnA"
+import NewQ from "./pages/NewQ"
+
 function App() {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.verify).result;
@@ -56,6 +59,8 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />{" "}
         <Route path="/*" element={<Navigate to="/" />} />{" "}
         <Route path="/landing" element={<Landing/>}/> 
+        <Route path="/qna" element={<QnA/>}/>
+        <Route path="/newq" element={<NewQ/>}/>
       </Routes>
     </>
   );
