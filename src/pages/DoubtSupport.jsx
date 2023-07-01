@@ -12,21 +12,21 @@ const DoubtSupport = () => {
           <div className="text-5xl md:text-6xl font-bold mt-0">
             Prepare Your Kids For The Future with Experienced Teacher
           </div>
-          
         </div>
         <div className="home-right">
-          <img className="w-[50%] h-[50%] ml-40"
-          src="/dizzy-happy-girl-in-graduation-gown-jumps-and-tosses-her-graduation-cap 1.png"/>
+          <img
+            className="w-[50%] h-[50%] ml-40"
+            src="/dizzy-happy-girl-in-graduation-gown-jumps-and-tosses-her-graduation-cap 1.png"
+          />
         </div>
       </div>
       <div className="text-gray py-4 px-6 text-left container-home1">
         <div className="text-lg font-semibold mb-2">
-        Kids who learn to code are ready to face their ever-changing future. 
-        Our Experienced teacher will help your kids develop the resilience, skills, and abilities to respond productively to those changes.
+          Kids who learn to code are ready to face their ever-changing future.
+          Our Experienced teacher will help your kids develop the resilience,
+          skills, and abilities to respond productively to those changes.
         </div>
       </div>
-    
-
       <section className="mt-2"> 
         <div className="z-0"><Grid/></div>
         
@@ -87,10 +87,69 @@ const DoubtSupport = () => {
 
       
 
-      <div className="mt-7">
-        <Footer/>
-      </div>
 
+        <div>
+          <h2 class="text-lg font-semibold mb-2">Mentors</h2>
+          <div class="flex flex-wrap gap-4">
+            <div class="bg-white shadow-md rounded-lg p-4">
+              <h3 class="text-lg font-semibold mb-2">Mentor Name</h3>
+              <p class="mb-4">Description of the mentor or their expertise</p>
+              <a
+                href="#"
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Schedule a Meeting
+              </a>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-4">
+              <h3 class="text-lg font-semibold mb-2">Mentor Name</h3>
+              <p class="mb-4">Description of the mentor or their expertise</p>
+              <a
+                href="#"
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Schedule a Meeting
+              </a>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-4">
+              <h3 class="text-lg font-semibold mb-2">Mentor Name</h3>
+              <p class="mb-4">Description of the mentor or their expertise</p>
+              <a
+                href="#"
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Schedule a Meeting
+              </a>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-4">
+              <h3 class="text-lg font-semibold mb-2">Mentor Name</h3>
+              <p class="mb-4">Description of the mentor or their expertise</p>
+              <a
+                href="#"
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Schedule a Meeting
+              </a>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-4">
+              <h3 class="text-lg font-semibold mb-2">Mentor Name</h3>
+              <p class="mb-4">Description of the mentor or their expertise</p>
+              <a
+                href="#"
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Schedule a Meeting
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4 z-0">
+        <GridLower />
+      </div>
+      <div className="mt-7">
+        <Footer />
+      </div>
     </>
   );
 };
