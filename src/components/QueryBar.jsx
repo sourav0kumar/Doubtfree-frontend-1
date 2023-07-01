@@ -27,18 +27,18 @@ const SearchBar = () => {
 
   return (
     <div>
-         <h2 className="mb-6 mt-4 text-5xl font-bold tracking-tight text-center text-black-900 lg:mb-8 lg:text-5xl">
+         <h2 className="mb-6 mt-2 text-3xl font-bold tracking-tight text-center text-black-900 lg:mb-8 lg:text-3xl">
             ACE WITH VERIFIED ANSWERS
           </h2>
     
     <div className="flex items-center justify-center mt-2">
-      <div className="w-4/6 rounded-full overflow-hidden bg-white-600 shadow-md">
+      <div className="w-full  bg-white-600 shadow-md">
         <div className="flex items-center space-x-4 px-4 py-2">
           <div className="relative flex-grow">
             <input
               type="text"
-              className="w-full py-2 pl-10 pr-4 text-gray-800 bg-transparent border-none focus:outline-none"
-              placeholder="Type to search"
+              className="w-max-full py-2 pl-10 pr-4 text-gray-800 bg-transparent border-none focus:outline-none"
+              placeholder="Search your Questions"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -61,7 +61,7 @@ const SearchBar = () => {
           )}
 
 
-          <label className="flex items-center space-x-2 cursor-pointer">
+          {/* <label className="flex items-center space-x-2 cursor-pointer">
             <span className="text-gray-600">
                 <i class="bi bi-image-fill"></i>
             </span>
@@ -71,7 +71,7 @@ const SearchBar = () => {
               className="hidden"
               onChange={handleImageUpload}
             />
-          </label>
+          </label> */}
 
 
           <button
@@ -82,10 +82,10 @@ const SearchBar = () => {
           </button>
           
 
-          <button className="text-gray"
+          {/* <button className="text-gray"
                 onClick={handleFAQ}>
             <i className="bi bi-file-earmark-bar-graph me-2"></i>
-          </button>
+          </button> */}
 
         </div>
       </div>

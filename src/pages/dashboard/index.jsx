@@ -17,6 +17,8 @@ import { useSelector } from "react-redux";
 import { Typography } from "antd";
 import LearnCourse from "./course";
 import Landing from "../../components/compiler/compiler/Landing";
+import QnA from "../QnA"
+import NewQ from "../NewQ";
 
 const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -114,7 +116,11 @@ const Dashboard = () => {
                 {!collapsed && "Add Course"}
               </Link>
             )}
-            <Link to="/dashboard/profile">
+            <Link 
+              to="/dashboard/qna"
+              className={active === "5" ? "active" : ""}
+              onClick={() => setActive("5")}
+            >
               {" "}
               <div className="flex flex-col items-center group relative">
                 <QuestionCircleOutlined className="mr-1" />
@@ -155,6 +161,7 @@ const Dashboard = () => {
                 {active === "2" && "Courses"}
                 {active === "3" && "Playground"}
                 {active === "4" && "Add Course"}
+                {active === "5" && "QnA"}
                 {active === "-1" && "Courses / Learn"}
               </Breadcrumb.Item>
             </Breadcrumb>
@@ -174,6 +181,9 @@ const Dashboard = () => {
                 />
                 <Route path="/courses/:id" element={<LearnCourse />} />
                 <Route path="/playground" element={<Landing />} />
+                <Route path="/qna" element={<QnA/>} />
+                <Route path="/newq" element={<NewQ/>} />
+
               </Routes>
             </div>
           </Content>
