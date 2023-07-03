@@ -17,8 +17,9 @@ import { useSelector } from "react-redux";
 import { Typography } from "antd";
 import LearnCourse from "./course";
 import Landing from "../../components/compiler/compiler/Landing";
-import QnA from "../QnA"
+import QnA from "../QnA";
 import NewQ from "../NewQ";
+import ViewQuestion from "../doubts/viewquestion";
 
 const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -116,7 +117,7 @@ const Dashboard = () => {
                 {!collapsed && "Add Course"}
               </Link>
             )}
-            <Link 
+            <Link
               to="/dashboard/qna"
               className={active === "5" ? "active" : ""}
               onClick={() => setActive("5")}
@@ -181,9 +182,12 @@ const Dashboard = () => {
                 />
                 <Route path="/courses/:id" element={<LearnCourse />} />
                 <Route path="/playground" element={<Landing />} />
-                <Route path="/qna" element={<QnA/>} />
-                <Route path="/newq" element={<NewQ/>} />
-
+                <Route path="/qna" element={<QnA />} />
+                <Route
+                  path="/qna/view/:questionID"
+                  element={<ViewQuestion />}
+                />
+                <Route path="/newq" element={<NewQ />} />
               </Routes>
             </div>
           </Content>

@@ -2,20 +2,9 @@ import { React, useState, useEffect } from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
-
-// import HomeContent from "../../components/HomeContent"
-import { items, services_home } from "./constants";
+import { services_home } from "./constants";
 import { TypeAnimation } from "react-type-animation";
-import {
-  BranchesOutlined,
-  CodeFilled,
-  CompassFilled,
-  ExpandAltOutlined,
-  GithubFilled,
-  LinkOutlined,
-  MoreOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { CompassFilled, LinkOutlined } from "@ant-design/icons";
 
 const Home = () => {
   const [textColor, setTextColor] = useState("black");
