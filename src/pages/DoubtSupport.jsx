@@ -28,8 +28,8 @@ const DoubtSupport = () => {
         </div>
       </div>
 
-      <section className="mt-2">
-        <div className="z-0">
+      <section className="mt-5">
+        <div className="z-0 mx-5">
           <Grid />
         </div>
         <div className="z-23 mt-2">
@@ -53,7 +53,7 @@ const DoubtSupport = () => {
         <div class="mb-4">
           <h2 class="text-lg font-semibold mb-2">Submit a Doubt</h2>
           <form>
-            <div class="flex flex-col mb-2">
+            {/* <div class="flex flex-col mb-2">
               <label for="name" class="text-sm mb-1">
                 Your Name
               </label>
@@ -62,6 +62,20 @@ const DoubtSupport = () => {
                 id="name"
                 class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+            </div> */}
+            <div class="flex flex-col mb-2">
+              <label for="mentor" class="text-sm mb-1">
+                Select a Mentor
+              </label>
+              <select
+                id="mentor"
+                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">-- Select a Mentor --</option>
+                <option value="mentor1">Mentor 1</option>
+                <option value="mentor2">Mentor 2</option>
+                <option value="mentor3">Mentor 3</option>
+              </select>
             </div>
             <div class="flex flex-col mb-2">
               <label for="doubt" class="text-sm mb-1">
@@ -138,7 +152,7 @@ const DoubtSupport = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4 z-0">
+      <div className="z-0 mx-5">
         <GridLower />
       </div>
       <div className="mt-7">
