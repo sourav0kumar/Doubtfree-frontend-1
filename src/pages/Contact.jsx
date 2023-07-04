@@ -50,10 +50,18 @@ const Contact = () => {
         data,
         { headers }
       );
-      messageApi.open({
-        type: "success",
-        content: res?.data?.message,
-      });
+
+      if (res.data.error) {
+        messageApi.open({
+          type: "error",
+          content: res.data.error,
+        });
+      } else {
+        messageApi.open({
+          type: "success",
+          content: res?.data?.message,
+        });
+      }
       console.log(res.data);
     } catch (error) {
       console.log(error);
