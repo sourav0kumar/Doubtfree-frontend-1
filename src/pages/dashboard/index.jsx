@@ -126,11 +126,11 @@ const Dashboard = () => {
               <div className="flex flex-col items-center group relative">
                 <QuestionCircleOutlined className="mr-1" />
                 <div className="flex items-center absolute top-full mt-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                  `{getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`
+                  `{getuser.result.isTeacher ? "Resolve Doubts" : "My Doubts"}`
                 </div>
               </div>
               {!collapsed &&
-                `${getuser.result.isTeacher ? "Resolve Doubt" : "My Doubts"}`}
+                `${getuser.result.isTeacher ? "Resolve Doubts" : "My Doubts"}`}
             </Link>
             <Link to="/">
               {" "}
@@ -162,7 +162,7 @@ const Dashboard = () => {
                 {active === "2" && "Courses"}
                 {active === "3" && "Playground"}
                 {active === "4" && "Add Course"}
-                {active === "5" && "QnA"}
+                {active === "5" && "QnA / Questions"}
                 {active === "-1" && "Courses / Learn"}
               </Breadcrumb.Item>
             </Breadcrumb>

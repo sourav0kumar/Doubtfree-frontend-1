@@ -23,31 +23,26 @@ const QnA = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          All Lectures
+          Sort By..
         </button>
 
         <ul className="dropdown-menu">
           <li>
             <Link className="dropdown-item" to="#">
-              Current Lecture
+              Newest First
             </Link>
           </li>
           <li>
             <Link className="dropdown-item" to="#">
-              All Lectures
+              Oldest First
             </Link>
           </li>
         </ul>
       </div>
       <section className="mt-3">
         <h2 className="mb-6 mt-2 text-2xl font-bold tracking-tight  text-black-700 lg:mb-8 lg:text-2xl">
-          All Questions asked in this Course:
+          All Questions asked:
         </h2>
-      </section>
-
-      <section className="mt-1">
-        Here it should render all the questions added including new question
-        published.
       </section>
       <section className="mt-3 flex w-full justify-end">
         <Link
@@ -59,9 +54,12 @@ const QnA = () => {
       </section>
       <div className="flex justify-start align-top flex-wrap my-5 gap-3">
         {getdoubts &&
-          getdoubts?.questions?.map((question, index) => {
-            return <QuestionCard key={index} question={question} />;
-          })}
+          getdoubts.questions
+            ?.slice()
+            .reverse()
+            .map((question, index) => {
+              return <QuestionCard key={index} question={question} />;
+            })}
       </div>
     </div>
   );
