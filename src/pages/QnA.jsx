@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import QueryBar from "../components/QueryBar";
-import askNewQ from "./NewQ";
 import QuestionCard from "./doubts/question";
-import { useSelector } from "react-redux";
+
 const QnA = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const getdoubts = useSelector((state) => state.getdoubts).result;
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filteredQuestions = getdoubts?.questions?.filter((question) =>
+    question.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+  };
+  
+
   return (
     <div>
-      <QueryBar />
+      <QueryBar
+        onSearch={handleSearch}
+        onClear={handleClearSearch}
+        searchQuery={searchQuery}
+      />
+
+      {/* Rest of the component */}
       <div className="dropdown mt-2">
         {/* <Link className="btn btn-secondary dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown link
@@ -52,15 +73,35 @@ const QnA = () => {
           Ask a New Question
         </Link>
       </section>
-      <div className="flex justify-start align-top flex-wrap my-5 gap-3">
-        {getdoubts &&
+
+      {/* <div className="flex justify-start align-top flex-wrap my-5 gap-3">
+        {searchQuery !== "" && filteredQuestions.length === 0 ? (
+          <p className="text-center align-center  text-2xl">No Results Found</p>
+        ) : (
+          filteredQuestions.map((question, index) => (
+            <QuestionCard key={index} question={question} />
+          ))
+        )}
+      </div> */}
+
+    <div className="flex justify-start align-top flex-wrap my-5 gap-3">
+      {searchQuery === ""
+        ? getdoubts &&
           getdoubts.questions
             ?.slice()
             .reverse()
-            .map((question, index) => {
-              return <QuestionCard key={index} question={question} />;
-            })}
-      </div>
+            .map((question, index) => (
+              <QuestionCard key={index} question={question} />
+            ))
+        : filteredQuestions.length === 0 ? (
+            <p className="text-center align-center  text-2xl">No Results Found</p>
+          ) : (
+            filteredQuestions.map((question, index) => (
+              <QuestionCard key={index} question={question} />
+            ))
+          )}
+    </div>
+
     </div>
   );
 };

@@ -116,7 +116,7 @@ const LearnCourse = () => {
           <div className="text-lg font-bold">
             Students Enrolled: {fetchingContent && "Please Wait...."}
             <span className="text-blue-600 cursor-pointer" onClick={showDrawer}>
-              1000+(Open)
+              (Open)
             </span>
           </div>
         </div>

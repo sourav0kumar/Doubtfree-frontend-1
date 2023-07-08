@@ -4,6 +4,7 @@ import CourseCard from "../../components/CoursesCard";
 import Search from "../../components/Search";
 import { useSelector } from "react-redux";
 import AnimatedText from "../../components/AnimatedText";
+import Footer from "../../components/Footer";
 
 const { Title, Text } = Typography;
 
@@ -86,6 +87,10 @@ const CoursesAll = ({ setActive }) => {
             ))}
         </div>
       </div>
+
+      <section>
+        <Footer />
+      </section>
     </>
   );
 };

@@ -163,7 +163,7 @@ const Testimonials = () => {
         <div class="carousel-item relative float-left w-full">
           <div class="flex flex-wrap justify-center">
             <div class="grow-0 shrink-0 basis-auto w-full lg:w-8/12 px-3">
-              <h5 class="text-lg font-bold mb-3">John Doe</h5>
+              <h5 class="text-lg font-bold mb-3">Jay Srikant</h5>
               <p class="text-gray-500 mb-6">
                 <svg
                   aria-hidden="true"
