@@ -7,26 +7,28 @@ import QuestionCard from "./doubts/question";
 const QnA = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const getdoubts = useSelector((state) => state.getdoubts).result;
+ 
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
+  // const handleSearch = (query) => {
+  //   setSearchQuery(query);
+  // };
 
   const filteredQuestions = getdoubts?.questions?.filter((question) =>
     question.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleClearSearch = () => {
-    setSearchQuery("");
-  };
+  // const handleClearSearch = () => {
+  //   setSearchQuery("");
+  // };
   
 
   return (
     <div>
       <QueryBar
-        onSearch={handleSearch}
-        onClear={handleClearSearch}
+        
+        
         searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
       {/* Rest of the component */}
@@ -49,12 +51,12 @@ const QnA = () => {
 
         <ul className="dropdown-menu">
           <li>
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="/dashboard/qna">
               Newest First
             </Link>
           </li>
           <li>
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="newqdesc">
               Oldest First
             </Link>
           </li>

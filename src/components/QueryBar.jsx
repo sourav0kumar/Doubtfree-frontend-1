@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 
-const SearchBar = ({ onSearch, onClear }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const SearchBar = ({searchQuery, setSearchQuery }) => {
+  // const [searchQuery, setSearchQuery] = useState("");
   const [uploadedImage, setUploadedImage] = useState(null);
 
-  const handleSearch = () => {
-    onSearch(searchQuery);
+  const handleSearch = (query) => {
+    setSearchQuery();
   };
 
   const handleImageUpload = (event) => {
@@ -18,7 +18,7 @@ const SearchBar = ({ onSearch, onClear }) => {
 
   const handleClearSearch = () => {
     setSearchQuery("");
-    onClear();
+    // onClear();
   };
 
   return (

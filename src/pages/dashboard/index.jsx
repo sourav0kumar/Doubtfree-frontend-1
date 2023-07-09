@@ -20,6 +20,7 @@ import Landing from "../../components/compiler/compiler/Landing";
 import QnA from "../QnA";
 import NewQ from "../NewQ";
 import ViewQuestion from "../doubts/viewquestion";
+import QnADesc from"../sortedQnA"
 
 const { Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -187,6 +188,7 @@ const Dashboard = () => {
                   path="/qna/view/:questionID"
                   element={<ViewQuestion />}
                 />
+                <Route path="/qna/newqdesc" element={<QnADesc  />} />
                 <Route path="/newq" element={<NewQ />} />
               </Routes>
             </div>

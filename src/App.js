@@ -20,6 +20,7 @@ import CourseStructure from "./components/CourseStructure";
 import CoursesAll from "./pages/courses all";
 import Landing from "./components/compiler/compiler/Landing";
 import QnA from "./pages/QnA";
+import QnADesc from "./pages/sortedQnA"
 import NewQ from "./pages/NewQ";
 import { GetDoubtsService } from "./services/doubts/get";
 
@@ -62,6 +63,7 @@ function App() {
         <Route path="/landing" element={<Landing />} />{" "}
         <Route path="/qna" element={<QnA />} />{" "}
         <Route path="/newq" element={<NewQ />} />{" "}
+         {/* <Route path="/newq/newqdesc" element={<QnADesc  />} />{" "} */}
       </Routes>{" "}
     </>
   );
